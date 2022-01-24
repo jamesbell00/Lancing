@@ -18,7 +18,10 @@ CREATE TABLE `Freelancer` (
   `fname` varchar(30) not null,
   `lname` varchar(30) not null,
   `email` varchar(30) unique not null,
-  `address` varchar(100) default null,
+  `address` varchar(100) not null,
+  `city` varchar(30) not null,
+  `country` varchar(30) not null,
+  `dob` date not null,
   `phone` varchar(15) not null,
   `country_code` int not null,
   `picture` varchar(30) default null,
@@ -41,11 +44,18 @@ CREATE TABLE `Company` (
   `description` varchar(200) default null,
   `year_founded` varchar(4) default null,
   `no_emp` int default 0 check (no_emp>=0),
+  `website` varchar(30) default null,
   `sector_id` int default null,
   PRIMARY KEY (`company_id`),
   FOREIGN KEY (`sector_id`) REFERENCES `Sectors`(`sector_id`)
 	on delete set null
 	on update cascade
+);
+
+CREATE TABLE `Job_Status` (
+  `id` int,
+  `status` varchar(20),
+  PRIMARY KEY (`id`)
 );
 
 CREATE TABLE `Jobs` (
@@ -56,10 +66,14 @@ CREATE TABLE `Jobs` (
   `budget` int default 0,
   `duration` int default null,
   `file` varchar(30) default null,
+  `status_id` int default 1,
   PRIMARY KEY (`job_id`),
   FOREIGN KEY (`company_id`) REFERENCES `Company`(`company_id`)
 	on delete cascade
-    on update cascade
+    	on update cascade
+  FOREIGN KEY (`status_id`) REFERENCES `Job_Status`(`id`)
+	on delete cascade
+	on update cascade
 );
 
 CREATE TABLE `Saved_Jobs` (
@@ -139,11 +153,6 @@ CREATE TABLE `Freelancer_Skills` (
     on update cascade
 );
 
-CREATE TABLE `Job_Status` (
-  `id` int,
-  `status` varchar(20),
-  PRIMARY KEY (`id`)
-);
 
 CREATE TABLE `Freelancer_Jobs` (
   `freelancer_id` int,
