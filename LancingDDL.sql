@@ -5,7 +5,7 @@
 ##
 ## 		Date created: Jan 18, 2022
 ##
-##		Last modified: Jan 24, 2022 
+##		Last modified: Jan 19, 2022 
 ##		by James
 #############################################
 
@@ -53,7 +53,7 @@ CREATE TABLE `Company` (
 );
 
 CREATE TABLE `Job_Status` (
-  `id` int,
+  `id` int auto_increment,
   `status` varchar(20),
   PRIMARY KEY (`id`)
 );
@@ -70,10 +70,10 @@ CREATE TABLE `Jobs` (
   PRIMARY KEY (`job_id`),
   FOREIGN KEY (`company_id`) REFERENCES `Company`(`company_id`)
 	on delete cascade
-    	on update cascade
+	on update cascade,
   FOREIGN KEY (`status_id`) REFERENCES `Job_Status`(`id`)
-	on delete cascade
-	on update cascade
+	on delete set null
+	on update set null
 );
 
 CREATE TABLE `Saved_Jobs` (
@@ -246,4 +246,3 @@ CREATE TABLE `Job_Skills` (
   	on delete cascade
     on update cascade
 );
-
