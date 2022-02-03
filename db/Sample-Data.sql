@@ -35,13 +35,13 @@ VALUES
 	("LeBron",	"James",	"ljames@gmail.com",	"863 Trancas Street",	"5648970989",	1),
 	("Chandler",	"Parsons",	"cparsons@gmail.com",	"142 Monticello Road",	"7867867863",	1),
 	("Manu",	"Ginobbli",	"mginobbli@gmail.com",	"673 Silverado Trail",	"2745678345",	1),
-	("Tony",	"Parker",	"tparker@gmail.com",	"31 Forrester Street",	"5467912323",	1)
-    ("Peter",	"Parker",	"pparker@gmail.com",	"31 Forrester Street",	"5479917663",	1);
-    ("Andrés",	"Sanchez",	"asanchez@gmail.com",	"Castillo de Aragon 6",	"673879131",	34);
-    ("Lucia",	"Guzmán",	"luciag@gmail.com",	"Ronda de las Sirenas 9",	"647927113",	34);
-    ("Tyler",	"Victorie",	"tyvictorie77@gmail.com",	"34 Hollywood Drive",	"5569712213",	1);
-    ("María",	"Fernandez",	"mariaf@gmail.com",	"15 Villa Sonrisa Drive",	"5764915553",	1);
-    ("Ignacio",	"Muñoz",	"luism@gmail.com",	"Calle de Hernando Siles 8",	"645789455",	34);
+	("Tony",	"Parker",	"tparker@gmail.com",	"31 Forrester Street",	"5467912323",	1),
+    ("Peter",	"Parker",	"pparker@gmail.com",	"31 Forrester Street",	"5479917663",	1),
+    ("Andrés",	"Sanchez",	"asanchez@gmail.com",	"Castillo de Aragon 6",	"673879131",	34),
+    ("Lucia",	"Guzmán",	"luciag@gmail.com",	"Ronda de las Sirenas 9",	"647927113",	34),
+    ("Tyler",	"Victorie",	"tyvictorie77@gmail.com",	"34 Hollywood Drive",	"5569712213",	1),
+    ("María",	"Fernandez",	"mariaf@gmail.com",	"15 Villa Sonrisa Drive",	"5764915553",	1),
+    ("Ignacio",	"Muñoz",	"luism@gmail.com",	"Calle de Hernando Siles 8",	"645789455",	34),
     ("Daniel",	"Lynch",	"dlynch@gmail.com",	"31 Muholland Drive",	"5239877778",	1);
 
     
