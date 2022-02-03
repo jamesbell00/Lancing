@@ -5,7 +5,7 @@
 ##
 ## 		Date created: Jan 18, 2022
 ##
-##		Last modified: Jan 19, 2022 
+##		Last modified: Feb 3, 2022 
 ##		by James
 #############################################
 
@@ -27,6 +27,8 @@ CREATE TABLE `Freelancer` (
   `picture` varchar(30) default null,
   `cvFile` varchar(30) unique default null,
   `website` varchar(30) default null,
+  `created_date` timestamp default current_timestamp,
+  `updated_date` timestamp default null on update current_timestamp,
   PRIMARY KEY (`id`)
 );
 
@@ -46,6 +48,8 @@ CREATE TABLE `Company` (
   `no_emp` int default 0 check (no_emp>=0),
   `website` varchar(30) default null,
   `sector_id` int default null,
+  `created_date` timestamp default current_timestamp,
+  `updated_date` timestamp default null on update current_timestamp,
   PRIMARY KEY (`company_id`),
   FOREIGN KEY (`sector_id`) REFERENCES `Sectors`(`sector_id`)
 	on delete set null
@@ -67,6 +71,9 @@ CREATE TABLE `Jobs` (
   `duration` int default null,
   `file` varchar(30) default null,
   `status_id` int default 1,
+  `tech_weight` int default 50,
+  `created_date` timestamp default current_timestamp,
+  `updated_date` timestamp default null on update current_timestamp,
   PRIMARY KEY (`job_id`),
   FOREIGN KEY (`company_id`) REFERENCES `Company`(`company_id`)
 	on delete cascade
@@ -174,6 +181,8 @@ CREATE TABLE `Applications` (
   `freelancer_id` int not null,
   `job_id` int not null,
   `status_id` int default 2, #default in progress
+  `created_date` timestamp default current_timestamp,
+  `updated_date` timestamp default null on update current_timestamp,
   PRIMARY KEY (`freelancer_id`, `job_id`, `status_id`),
   FOREIGN KEY (`status_id`) REFERENCES `Application_Status`(`id`)
   	on delete cascade
@@ -190,7 +199,7 @@ CREATE TABLE `Saved_Freelancers` (
   `freelancer_id` int not null,
   `job_id` int not null,
   `company_id` int not null,
-  `save_date` timestamp default current_timestamp on update current_timestamp,
+  `save_date` timestamp default null on update current_timestamp,
   PRIMARY KEY (`freelancer_id`, `job_id`, `company_id`),
   FOREIGN KEY (`company_id`) REFERENCES `Company`(`company_id`)
   	on delete cascade
@@ -209,6 +218,8 @@ CREATE TABLE `Company_Contact` (
   `phone` varchar(15) not null,
   `country_code` int not null,
   `company_id` int not null,
+  `created_date` timestamp default current_timestamp,
+  `updated_date` timestamp default null on update current_timestamp,
   PRIMARY KEY (`email`),
   FOREIGN KEY (`company_id`) REFERENCES `Company`(`company_id`)
   	on delete cascade
