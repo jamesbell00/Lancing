@@ -11,8 +11,10 @@ var con = mysql.createConnection({
     if (err) throw err;
     console.log("Connected!");
     
-    con.query("SELECT * FROM Freelancer", function (err, result, fields) {
-        if (err) throw err;
-        console.log(result);
-      });
+    // con.query("SELECT * FROM Freelancer", function (err, result, fields) {
+    //     if (err) throw err;
+    //     console.log(result);
+    //   });
   });
+
+  module.exports = con
