@@ -1,24 +1,11 @@
 //new version
-
-
-
-
-
-
-
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 class FreelancerPage extends StatefulWidget {
   const FreelancerPage({ Key? key}) : super(key: key);
-
-
-
   @override
   _FreelancerPage createState() => _FreelancerPage();
 }
-
 //'with tickerProviderStateMaxin' is for tabbar(about,project)
 class _FreelancerPage extends State<FreelancerPage> with TickerProviderStateMixin{
   @override
