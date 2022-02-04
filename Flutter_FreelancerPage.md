@@ -38,40 +38,55 @@ class _FreelancerPage extends State<FreelancerPage> with TickerProviderStateMixi
                     color: Colors.grey.withOpacity(0.5),
                   ),
                 ),
-                Icon(Icons.menu, size: 30, color:Colors.black54)
-              ],
-            ),
+                Icon(Icons.menu, size: 30, color:Colors.black54),
+                Column(
+                  
+                )            
+              ],   
+            ), 
+             
           ),
+          
           //sized box is for top bar distance from texts
           SizedBox(height: 30),
+          // contaner for loc,name,rate
           Container(
-            margin: const EdgeInsets.only(left: 20, top: 0),
+            //color: Colors.blueGrey,
+            //margin is for name, loc, and rate box
+            margin: const EdgeInsets.only(left: 0, top: 0),
             child:Column(
               children: [
+                Container(
+                  alignment: Alignment.topLeft,
+                  margin: const EdgeInsets.only(left: 20),
+                  child: 
+                    Text("Jack Walton", textAlign: TextAlign.left, textScaleFactor: 1.5,  )
                 
-            Text("Jack Walton", textAlign: TextAlign.left, textScaleFactor: 1.5, ),
-            //Text("Jack york", textAlign: TextAlign.left, textScaleFactor: 1.5, )
+                ),
+                Container(
+                  alignment: Alignment.topLeft,
+                    margin: const EdgeInsets.only(left: 20),
+                    child: 
+                      Text("New york, NY", textAlign: TextAlign.left, textScaleFactor: 1, )
+                ),
+                Container(
+                  margin: const EdgeInsets.only(left: 20, top: 10),
+                  //padding: const EdgeInsets.only(top: 70, right: 20),
+                  child: Row(
+                    children: <Widget>[
+                      Icon(Icons.star_border_rounded, size: 15, color:Colors.black54),
+                      Text(
+                        "4.6/5",
+                      ),
+                    ],
+                  ),
+                ),
+                //sized box is for distance between name,.. texts and lower part
               ],
             )
           ),
-          Container(
-            margin: const EdgeInsets.only(left: 20),
-            child: 
-            Text("New york, NY", textAlign: TextAlign.left, textScaleFactor: 1, )
-          ),
-          Container(
-            margin: const EdgeInsets.only(left: 20, top: 10),
-            //padding: const EdgeInsets.only(top: 70, right: 20),
-            child: Row(
-              children: <Widget>[
-                Icon(Icons.star_border_rounded, size: 15, color:Colors.black54),
-                Text(
-                  "4.6/5",
-                ),
-              ],
-            ),
-          ),
-          //sized box is for distance between name,.. texts and lower part
+          
+
           SizedBox(height:12),
           //tab bar for the about and projects
           Container(
@@ -93,6 +108,7 @@ class _FreelancerPage extends State<FreelancerPage> with TickerProviderStateMixi
               ),
             ),
           ),
+          //container is for about section
           Container(
             height: 300,
             width: double.maxFinite,
@@ -103,7 +119,7 @@ class _FreelancerPage extends State<FreelancerPage> with TickerProviderStateMixi
                 Container(
                   height: 200,
                   width: double.infinity,//important!!
-                  margin: EdgeInsets.all(20),
+                  margin: EdgeInsets.all(5),
                   padding: EdgeInsets.all(10),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
@@ -120,22 +136,24 @@ class _FreelancerPage extends State<FreelancerPage> with TickerProviderStateMixi
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
+                    children:[
                        ListTile(
                         title: Text('About me '),
                         subtitle: Text(
-                            'Iheb Meftah ,étudiant en Licence Science Inforamtiques specialite Anlayse De Donnees et Big Data  '),
+                            'Experienced and dedicated Data Analyst with several years of experience identifying efficiencies and problem areas within data streams.  ',
+                            style: TextStyle(fontSize: 12),),
                       ),
+                      //sized bix is for distance between 'about me' and 'education' section
                       SizedBox(
                         height: 10,
                       ),
                       ListTile(
-                        title: Text('Education'),
+                        title: Text('Experiences'),
                         subtitle: Text(
-                            'Higher Institute of Computer Science and Multimedia of Sfax '),
+                            '-Created data modeling standards and procedures.\n-Performed detailed data validation  spanning across several different international projects.\n -Worked with complex datasets and trained new hires to work with them as well.'),
                       ),
                       SizedBox(
-                        height: 10,
+                        height: 8,
                       ),
                     ],
                     ),
@@ -144,11 +162,76 @@ class _FreelancerPage extends State<FreelancerPage> with TickerProviderStateMixi
               ]
             ),
           ),
-         
-      ],
+          //container for buttom invite and contact
+          Container(
+            margin: EdgeInsets.only(left: 85, top: 0,right: 60),
+            padding: EdgeInsets.all(1),
+            child: Row(
+              children:[
+                Container(
+                  margin: EdgeInsets.only(right: 50),
+                  child: SizedBox(
+                    height:40, //height of button
+                    width:90, //width of button
+                    child:ElevatedButton(
+                      child:
+                        const Text("Invite",
+                        style: TextStyle(
+                          color: Colors.white,
+                          
+                          fontSize: 15
+                    ),),
+                    style: ElevatedButton.styleFrom(
+                    primary: Colors.blueGrey, //background color of button
+                    side: BorderSide(width:3, color:Colors.blueGrey.shade400), //border width and color
+                    elevation: 3, //elevation of button
+                    shape: RoundedRectangleBorder( //to set border radius to button
+                      borderRadius: BorderRadius.circular(10)
+                    ),
+                    padding: EdgeInsets.all(0) //content padding inside button
+                    ),
+                    onPressed: (){ 
+                    //code to execute when this button is pressed.
+                    },                     
+                 ),
+                )
+              ),
+               Container(
+                  child: SizedBox(
+                    height:40, //height of button
+                    width:90, //width of button
+                    child:ElevatedButton(
+                      child:
+                        const Text("Contact",
+                        style: TextStyle(
+                          color: Colors.blueGrey,
+                          
+                          fontSize: 15
+                    ),),
+                    style: ElevatedButton.styleFrom(
+                    primary: Colors.white, //background color of button
+                    side: BorderSide(width:3, color:Colors.blueGrey.shade600), //border width and color
+                    elevation: 3, //elevation of button
+                    shape: RoundedRectangleBorder( //to set border radius to button
+                      borderRadius: BorderRadius.circular(10)
+                    ),
+                    padding: EdgeInsets.all(0) //content padding inside button
+                    ),
+                    onPressed: (){ 
+                    //code to execute when this button is pressed.
+                    },                     
+                 ),
+                )
+              ),
+             ],
+            ),
+          )
+        ],
       ),
     );
     throw UnimplementedError();
   }
 
 }
+
+
