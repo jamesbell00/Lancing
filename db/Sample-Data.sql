@@ -59,7 +59,15 @@ INSERT INTO Company (name, address)
 VALUES
 	("Apple",	"1 Apple Street"),				
 	("Microsoft",	"2 Microsoft Lane"),					
-	("Tesla",	"14 Tesla Avenue");		
+	("Tesla",	"14 Tesla Avenue"),
+	("Amazon",	"4 Amazon Villa"),
+	("Paypal",	"18 Paypal Street"),
+	("Metaverse",	"Metaverse Park"),
+	("Tinder",	"11 Tinder Avenue"),
+	("Deloitte",	"9 Deloitte Street"),
+	("Google",	"Google Plaza"),
+	("Sony",	"1 Sony Street");
+
 
 
 
@@ -76,6 +84,9 @@ VALUES
 	(2,	"Android Developer",	"create an app for android devices and destroy the competition"),
 	(1,	"Cybersecurity Engineer",	"install and maintain isp system");
 
+INSERT INTO Company_Contact (email, name, phone, country_code,company_id)
+VALUES
+	()
 
 INSERT INTO Skill_Categories (category_name)
 VALUES ("Tech"), ("Soft");
