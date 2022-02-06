@@ -26,11 +26,23 @@ CREATE TABLE `Freelancer` (
   `country_code` int not null,
   `picture` varchar(30) default null,
   `cvFile` varchar(30) unique default null,
-  `website` varchar(30) default null,
+  `website` varchar(256) default null,
+  `bio` varchar(2000) default null,
   `created_date` timestamp default current_timestamp,
   `updated_date` timestamp default null on update current_timestamp,
   PRIMARY KEY (`id`)
 );
+
+-- CREATE TABLE `CV` (
+-- 	`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+--     `freelancer_id` int not null,
+-- 	`filename` VARCHAR(128) NOT NULL,
+-- 	`mimetype` VARCHAR(64) NOT NULL,
+-- 	`data` MEDIUMBLOB NOT NULL,
+-- 	FOREIGN KEY (`freelancer_id`) REFERENCES `Freelancer`(`id`)
+-- 	on delete set null
+-- 	on update cascade    
+-- );
 
 CREATE TABLE `Sectors` (
   `sector_id` int auto_increment,
