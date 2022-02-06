@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterapp/widgets/icon_and_text_widget.dart';
 
 class FreelancerPage extends StatefulWidget {
   const FreelancerPage({Key? key}) : super(key: key);
@@ -111,12 +112,19 @@ class _FreelancerPage extends State<FreelancerPage>
                             child:
                                 Container()), //to push the logo to right of screen
                         Container(
-                          margin: const EdgeInsets.only(right: 290),
-                          width: 50,
-                          height: 50,
+                          margin: const EdgeInsets.only(right: 270),                         
+                          width: 70,
+                          height: 70,
                           decoration: BoxDecoration(
+                            border: Border.all(width: 2),
                             borderRadius: BorderRadius.circular(50),
                             color: Colors.grey.withOpacity(0.5),
+                            image: DecorationImage(
+                                  fit: BoxFit.cover,//to image fit the box 
+                                  image: AssetImage(
+                                    "assets/images/jack.jpg"
+                                    )
+                                )
                           ),
                         ),
                         Icon(Icons.menu, size: 30, color: Colors.black54),
@@ -162,9 +170,11 @@ class _FreelancerPage extends State<FreelancerPage>
                           ),
                           //sized box is for distance between name,.. texts and lower part
                         ],
-                      )),
+                      )
+                      ),
                 ],
-              )),
+              )
+              ),
 
           //tab bar for the about and projects
           Container(
@@ -182,7 +192,7 @@ class _FreelancerPage extends State<FreelancerPage>
                   tabs: [Tab(text: "About"), Tab(text: "Projects")]),
             ),
           ),
-          //container is for 'about' section
+          //container is for 'about' and 'project' section
           Container(
             height: 300,
             width: double.maxFinite,
@@ -237,7 +247,90 @@ class _FreelancerPage extends State<FreelancerPage>
                   ],
                 ),
               ),
-              Text("data")
+              //container is for the Project part
+              Container(
+                height: 100,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [Colors.blueGrey.shade100, Colors.white],
+                  ), 
+                ),
+                child:ListView.builder(  //listview is for project section
+                    shrinkWrap: true,
+                    physics: AlwaysScrollableScrollPhysics(),
+                    itemCount: 10, // is connecting to index
+                    itemBuilder: (context, index){
+                      return Container(
+                        margin: EdgeInsets.only(left: 10,right: 20, bottom: 10),
+                        child: Row(
+                          children: [
+                            Container(// container for image section
+                              width: 100,
+                              height: 100,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: Colors.white38,
+                                image: DecorationImage(
+                                  fit: BoxFit.cover,//to image fit the box 
+                                  image: AssetImage(
+                                    "assets/images/Database.jpg"
+                                    )
+                                )
+                              ),
+                            ), 
+                            Expanded( // we wrap it around expanded widget to make the Width dynamic(take all available space)
+                              child: Container( // container for text of each project
+                                height: 89,
+                                //width: 250,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.only(
+                                    topRight: Radius.circular(20),
+                                    bottomRight: Radius.circular(20)
+                                  ),
+                                  color: Colors.white,
+                                ),
+                                child: Padding(// padding btw texts and images
+                                  padding: EdgeInsets.only(right: 20, left: 5),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.center,//to set all three rows(texts) in the center of the box
+                                    children: [
+                                      Text("Marketing Forecast ", style: TextStyle(fontSize: 15, color: Colors.black,), overflow: TextOverflow.ellipsis ),
+                                      SizedBox(height: 2,),
+                                      Text("Investigate and conduct studies on the forecast, demand and capital  of proposed products.", style: TextStyle(fontSize: 14, color: Colors.black54,), overflow: TextOverflow.ellipsis),
+                                      SizedBox(height: 4,),
+                                      Row(
+                                        children: [
+                                          IconAndTextWidget(
+                                           icon: Icons.speed_rounded,
+                                           text: "Advanced", 
+                                           color: Colors.black87, 
+                                           iconColor: Colors.blueGrey),
+                                           SizedBox(width: 4,),
+                                           IconAndTextWidget(
+                                           icon: Icons.timer,
+                                           text: "6 Months", 
+                                           color: Colors.black87, 
+                                           iconColor: Colors.blueGrey),
+
+                                        ],
+                                        
+                                      )
+                                    ],
+                                  ),
+                                  ),
+                              ),
+                            )
+                          ],
+                        ),
+                      );
+                    }
+                 ),
+              )
+              
             ]),
           ),
           //container for buttom invite and contact
