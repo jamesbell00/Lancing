@@ -2,8 +2,8 @@ const con = require('./connection')
 let companies = [null];
 
 class Company{
-    constructor(id, fullname, address, logo, description, year_founded, no_emp, website, sector_id, created_date, updated_date){
-        this.id = id;
+    constructor(company_id, fullname, address, logo, description, year_founded, no_emp, website, sector_id, created_date, updated_date){
+        this.company_id = company_id;
         this.name = fullname;
         this.address = address;
         this.logo = logo;
@@ -34,10 +34,8 @@ class Company{
                     "year_founded = '" + this.year_founded + "'," +
                     "no_emp = '" + this.no_emp + "'," +
                     "website = '" + this.website + "'," +
-                    "sector_id = " + this.sector_id + "," +
-                    "created_date = '" + this.created_date + "'," +
-                    "updated_date = '" + this.updated_date + "'," +
-                    "WHERE id = " + this.id;
+                    "sector_id = " + this.sector_id + " " +
+                    "WHERE company_id = " + this.company_id;
         
         con.query(query, (err, rows, fields) => {
             if(err) throw err;
