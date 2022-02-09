@@ -2,8 +2,8 @@ const con = require('./connection')
 let companies = [null];
 
 class Company{
-    constructor(company_id, fullname, address, logo, description, year_founded, no_emp, website, sector_id, created_date, updated_date){
-        this.company_id = company_id;
+    constructor(id, fullname, address, logo, description, year_founded, no_emp, website, sector_id, created_date, updated_date){
+        this.id = id;
         this.name = fullname;
         this.address = address;
         this.logo = logo;
