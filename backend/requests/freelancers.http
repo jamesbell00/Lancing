@@ -1,0 +1,41 @@
+@api = http://localhost:4000/freelancers
+
+
+### Get all freelancers
+{{api}}
+
+
+### get a single freelancer
+{{api}}/1
+
+
+### get projects for a freelancer
+{{api}}/:id/projects
+
+### get projects for a freelancer
+{{api}}/1/projects
+
+
+### delete a single freelancer
+DELETE {{api}}/20
+
+
+### update freelancer
+PUT {{api}}/1
+Content-Type: application/json
+
+{
+  "email": "belljames79@gmail.com",
+  "city": "Bilbao"
+}
+
+
+
+# ### create a new freelancer
+# POST {{api}}
+# Content-Type: application/json
+
+# {
+#   "sample-data": "my data",
+#   "other-attribute": "other data"
+# }
