@@ -6,7 +6,7 @@
 * Babel
 * Swagger (Documentation)
 
-##To run:
+## To run:
    * 1. Run SQL scripts to install db and sample data 
    * 2. clone repo onto local machine
    * 3. cd directory and run 'npm install --save' to install dependencies
