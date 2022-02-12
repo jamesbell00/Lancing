@@ -13,6 +13,8 @@ class Job {
         this.file = file;
     }
 
+    
+
     updateDB() {
         const query = "UPDATE Job SET " +
                     "name = '" + this.name + "'," +
