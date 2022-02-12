@@ -11,7 +11,7 @@ import { options } from "./swaggerOptions";
 const app = express();
 const specs = swaggerJSDoc(options);
 
-app.set("port", 4000);
+app.set("port", 4001);
 
 app.use(cors());
 app.use(morgan("dev"));
