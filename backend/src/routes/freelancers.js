@@ -97,23 +97,23 @@ router.get("/freelancers/:id/projects", getFreelancerProjects)
  */
 router.delete("/freelancers/:id", deleteFreelancer)
 
-// /**
-//  * @swagger
-//  * /freelancers/{id}:
-//  *  put:
-//  *    summary: update a freelancer by Id
-//  *    tags: [Freelancer]
-//  */
+/**
+ * @swagger
+ * /freelancers/{id}:
+ *  put:
+ *    summary: update a freelancer by Id
+ *    tags: [Freelancer]
+ */
 router.put("/freelancers/:id", updateFreelancer);
 
 
-// /**
-//  * @swagger
-//  * /freelancers:
-//  *  put:
-//  *    summary: save a new freelancer
-//  *    tags: [Freelancer]
-//  */
+/**
+ * @swagger
+ * /freelancers:
+ *  put:
+ *    summary: save a new freelancer
+ *    tags: [Freelancer]
+ */
 router.post("/freelancers", saveFreelancer);
 
 export default router;
