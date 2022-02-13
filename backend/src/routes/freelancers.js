@@ -4,6 +4,8 @@ import {
   getFreelancerById,
   getFreelancerProjects,
   deleteFreelancer,
+  updateFreelancer,
+  saveFreelancer,
 } from "../controllers/freelancers";
 
 const router = Router();
@@ -95,33 +97,23 @@ router.get("/freelancers/:id/projects", getFreelancerProjects)
  */
 router.delete("/freelancers/:id", deleteFreelancer)
 
-
-
 // /**
 //  * @swagger
-//  * /tasks/{id}:
-//  *  get:
-//  *    summary: Get task by Id
-//  *    tags: [Tasks]
-//  */
-// router.get("/tasks/:id", getTask);
-
-// /**
-//  * @swagger
-//  * /tasks/{id}:
-//  *  delete:
-//  *    summary: delete a task by Id
-//  *    tags: [Tasks]
-//  */
-// router.delete("/tasks/:id", deleteTask);
-
-// /**
-//  * @swagger
-//  * /tasks/{id}:
+//  * /freelancers/{id}:
 //  *  put:
-//  *    summary: update a task by Id
-//  *    tags: [Tasks]
+//  *    summary: update a freelancer by Id
+//  *    tags: [Freelancer]
 //  */
-// router.put("/tasks/:id", updateTask);
+router.put("/freelancers/:id", updateFreelancer);
+
+
+// /**
+//  * @swagger
+//  * /freelancers:
+//  *  put:
+//  *    summary: save a new freelancer
+//  *    tags: [Freelancer]
+//  */
+router.post("/freelancers", saveFreelancer);
 
 export default router;
