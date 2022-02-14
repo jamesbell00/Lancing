@@ -12,3 +12,8 @@ export const q_deleteFreelancer = 'delete from Freelancer where id = ?'
 
 //inserts 
 export const q_saveFreelancer = 'insert into Freelancer (fname, lname, email, address, city, country, dob, phone, country_code) values (?, ?, ?, ?, ?, ?, ?, ?, ?)'
+
+// Company queries
+// selects
+export const q_getAllCompanies = 'select * from Company'
+export const q_getCompanyById = 'select * from Company where company_id = ?'

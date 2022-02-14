@@ -1,5 +1,11 @@
 import { Router } from "express";
+import {
+    getAllCompanies,
+    getCompanyById,
+  } from "../controllers/company";
+import { getAllFreelancers } from "../controllers/freelancers";
 
+const router = Router();
 /**
  * @swagger
  * components:
@@ -38,3 +44,25 @@ import { Router } from "express";
  *  name: Company
  *  description: Company endpoint
  */
+
+
+/**
+ * @swagger
+ * /companies:
+ *  get:
+ *    summary: Get all companies
+ *    tags: [Company]
+ */
+router.get("/companies", getAllCompanies);
+
+
+/**
+ * @swagger
+ * /companies/:id:
+ *  get:
+ *    summary: get company by id
+ *    tags: [Company]
+ */
+router.get("/companies/:id", getCompanyById);
+
+export default router;
