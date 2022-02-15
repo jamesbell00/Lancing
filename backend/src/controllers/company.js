@@ -18,3 +18,6 @@ export const getCompanyById = async (req, res) => {
     console.log(rows[0])
     res.json(rows[0])
 }
+
+// get jobs by company (maybe add to get company by id)
+

@@ -5,6 +5,7 @@ import morgan from "morgan";
 import userRoutes from "./routes/freelancers";
 import companyRoutes from "./routes/company";
 import jobRoutes from "./routes/jobs";
+import homeRoutes from './routes/home';
 
 import swaggerJSDoc from "swagger-jsdoc";
 import swaggerUI from "swagger-ui-express";
@@ -23,6 +24,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(userRoutes);
 app.use(companyRoutes);
 app.use(jobRoutes);
+app.use(homeRoutes);
 app.use("/docs", swaggerUI.serve, swaggerUI.setup(specs));
 
 export default app;
