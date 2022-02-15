@@ -1,5 +1,15 @@
 import {connect} from '../database.js'
+<<<<<<< HEAD
 import {q_getAllFreelancers, q_getFreelancerById, q_getFreelancerProjects, q_deleteFreelancer} from '../queries.js'
+=======
+import {q_getAllFreelancers, 
+        q_getFreelancerById, 
+        q_getFreelancerProjects, 
+        q_deleteFreelancer, 
+        q_updateFreelancer, 
+        q_saveFreelancer
+} from '../queries'
+>>>>>>> f5cc4d03aceac12fb46896bea5e2ec4da20f3da3
 
 
 export const getAllFreelancers = async (req, res) => {
@@ -23,35 +33,39 @@ export const getFreelancerProjects = async (req, res) => {
 
 export const deleteFreelancer = async (req, res) => {
     const connection = await connect(); 
-    await connection.query('delete from Freelancer where id = ?', [req.params.id])  
-    
+    await connection.query(q_deleteFreelancer, [req.params.id])  
     res.sendStatus(204);
 }
 
-// export const saveTask = async (req, res) => {
-//     const connection = await connect();
-//     const [results] = await connection.query('insert into tasks (title, description) values (?, ?)', [
-//         req.body.title, 
-//         req.body.description
-//     ])
-//     res.json({
-//         id: results.insertId,
-//         ...req.body,
-//     })
-// }
+export const updateFreelancer = async (req, res) => {
+    const connection = await connect();
+    await connection.query(q_updateFreelancer, [
+        req.body,
+        req.params.id
+    ])
+    res.sendStatus(204)
+}
 
-// export const deleteTask = async (req, res) => {
-//     const connection = await connect(); 
-//     await connection.query('delete from tasks where id = ?', [req.params.id])  
-    
-//     res.sendStatus(204);
-// }
+//METHOD FOR ADDING FREELANCER
+// create page for all not null attributes
+// another page for nullables (using update)
+export const saveFreelancer = async (req, res) => {
+    const connection = await connect();
+    const [results] = await connection.query(q_saveFreelancer, [
+        req.body.fname, 
+        req.body.lname, 
+        req.body.email, 
+        req.body.address, 
+        req.body.city, 
+        req.body.country, 
+        req.body.dob, 
+        req.body.phone, 
+        req.body.country_code
+    ])
+    res.json({
+        id: results.insertId,
+        ...req.body,
+    })
+}
 
-// export const updateTask = async (req, res) => {
-//     const connection = await connect();
-//     const results = await connection.query('update tasks set ? where id = ?', [
-//         req.body,
-//         req.params.id
-//     ])
-//     res.sendStatus(204)
-// }
+

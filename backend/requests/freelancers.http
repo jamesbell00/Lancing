@@ -6,11 +6,8 @@
 
 
 ### get a single freelancer
-{{api}}/1
+{{api}}/23
 
-
-### get projects for a freelancer
-{{api}}/:id/projects
 
 ### get projects for a freelancer
 {{api}}/1/projects
@@ -21,21 +18,27 @@ DELETE {{api}}/20
 
 
 ### update freelancer
-PUT {{api}}/1
+PUT {{api}}/23
 Content-Type: application/json
 
 {
-  "email": "belljames79@gmail.com",
-  "city": "Bilbao"
+  "phone": "21354603956"
 }
 
 
 
-# ### create a new freelancer
-# POST {{api}}
-# Content-Type: application/json
+### create a new freelancer
+POST {{api}}
+Content-Type: application/json
 
-# {
-#   "sample-data": "my data",
-#   "other-attribute": "other data"
-# }
+{
+  "fname": "peter",
+  "lname": "parker",
+  "email": "peter@gmail.com",
+  "address": "123 avengers drive",
+  "city": "New York",
+  "country": "United States",
+  "dob": "2000-01-01",
+  "phone": "6832453564",
+  "country_code": "1"
+}

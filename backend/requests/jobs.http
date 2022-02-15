@@ -1,0 +1,8 @@
+@api = http://localhost:4000/jobs
+
+### get all jobs
+{{api}}
+
+### get matched jobs by id
+{{api}}/1
+
