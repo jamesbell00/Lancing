@@ -4,7 +4,7 @@ import {
   getFreelancerById,
   getFreelancerProjects,
   deleteFreelancer,
-} from "../controllers/freelancers";
+} from "../controllers/freelancers.js";
 
 const router = Router();
 
