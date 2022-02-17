@@ -3,6 +3,7 @@ import {
     getAllCompanies,
     getCompanyById,
     getCompanyJobs,
+    getCompanyContact,
   } from "../controllers/company.js";
 
 
@@ -68,11 +69,22 @@ router.get("/companies/:id", getCompanyById);
 
 /**
  * @swagger
- * /companies/:id:
+ * /companies/:id/jobs:
  *  get:
- *    summary: get company by id
+ *    summary: get all the jobs of the company
  *    tags: [Company]
  */
  router.get("/companies/:id/Jobs", getCompanyJobs);
+
+ /**
+ * @swagger
+ * /companies/:id/companyContact:
+ *  get:
+ *    summary: get the contact of the company 
+ *    tags: [Company]
+ */
+  router.get("/companies/:id/companyContact", getCompanyContact);
+
+
 
 export default router;

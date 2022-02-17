@@ -3,6 +3,8 @@ import {
     q_getAllCompanies,
     q_getCompanyById,
     q_getCompanyJobs,
+    q_getCompanyContact,
+    q_insertCompanyContact,
 } from '../queries.js'
 
 
@@ -26,6 +28,12 @@ export const getCompanyById = async (req, res) => {
 export const getCompanyJobs = async (req, res) => {
     const connection = await connect();
     const [rows] = await connection.query(q_getCompanyJobs, [req.params.id])
+    res.json(rows)
+}
+
+export const getCompanyContact = async (req, res) => {
+    const connection = await connect();
+    const [rows] = await connection.query(q_getCompanyContact, [req.params.id])
     res.json(rows[0])
 }
 
