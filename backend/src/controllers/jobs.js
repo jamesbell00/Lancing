@@ -1,4 +1,4 @@
-import {connect} from '../database'
+import {connect} from '../database.js'
 import {
     q_getAllJobs,
     q_getMatchedJobs,

@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getAllFreelancers, getFreelancerById, getFreelancerProjects, deleteFreelancer } from "../controllers/freelancers";
+import { getAllFreelancers, getFreelancerById, getFreelancerProjects, deleteFreelancer } from "../controllers/freelancers.js";
 const router = Router();
 /**
  * @swagger

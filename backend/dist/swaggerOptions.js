@@ -7,7 +7,7 @@ export const options = {
       description: ""
     },
     servers: [{
-      url: "http://localhost:4001"
+      url: "http://localhost:4000"
     }]
   },
   apis: ["./src/routes/**/*.js"]
