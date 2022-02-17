@@ -6,7 +6,7 @@ import {
   deleteFreelancer,
   updateFreelancer,
   saveFreelancer,
-} from "../controllers/freelancers";
+} from "../controllers/freelancers.js";
 
 
 const router = Router();

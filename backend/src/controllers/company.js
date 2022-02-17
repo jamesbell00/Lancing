@@ -2,13 +2,15 @@ import {connect} from '../database.js'
 import {
     q_getAllCompanies,
     q_getCompanyById,
-} from '../queries'
+    q_getCompanyJobs,
+} from '../queries.js'
 
 
 export const getAllCompanies = async (req, res) => {
     const db = await connect()
     const [rows] = await db.query(q_getAllCompanies)
     res.json(rows)
+    console.log(rows)
 }
 
 
@@ -20,4 +22,10 @@ export const getCompanyById = async (req, res) => {
 }
 
 // get jobs by company (maybe add to get company by id)
+
+export const getCompanyJobs = async (req, res) => {
+    const connection = await connect();
+    const [rows] = await connection.query(q_getCompanyJobs, [req.params.id])
+    res.json(rows[0])
+}
 

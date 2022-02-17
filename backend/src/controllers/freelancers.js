@@ -6,7 +6,7 @@ import {q_getAllFreelancers,
         q_deleteFreelancer, 
         q_updateFreelancer, 
         q_saveFreelancer
-} from '../queries'
+} from '../queries.js'
 
 
 

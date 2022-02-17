@@ -6,3 +6,6 @@
 
 ### get a single company
 {{api}}/1
+
+### get company Jobs
+{{api}}/1/Jobs

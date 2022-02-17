@@ -2,11 +2,11 @@
 
 
 ### Get all freelancers
-GET {{api}}
+{{api}}
 
 
 ### get a single freelancer
-GET  {{api}}/23
+{{api}}/1
 
 
 ### get projects for a freelancer

@@ -2,7 +2,7 @@ import { Router } from "express";
 import { 
     getAllJobs,
     getMatchedJobs,
-} from '../controllers/jobs'
+} from '../controllers/jobs.js'
 
 const router = Router();
 

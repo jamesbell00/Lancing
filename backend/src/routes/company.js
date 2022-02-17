@@ -2,8 +2,9 @@ import { Router } from "express";
 import {
     getAllCompanies,
     getCompanyById,
-  } from "../controllers/company";
-import { getAllFreelancers } from "../controllers/freelancers";
+    getCompanyJobs,
+  } from "../controllers/company.js";
+
 
 const router = Router();
 /**
@@ -64,5 +65,14 @@ router.get("/companies", getAllCompanies);
  *    tags: [Company]
  */
 router.get("/companies/:id", getCompanyById);
+
+/**
+ * @swagger
+ * /companies/:id:
+ *  get:
+ *    summary: get company by id
+ *    tags: [Company]
+ */
+ router.get("/companies/:id/Jobs", getCompanyJobs);
 
 export default router;

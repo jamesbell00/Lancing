@@ -2,7 +2,7 @@ import {connect} from '../database.js'
 import {
     q_getMatchedJobs,
     q_getMatchedFreelancers,
-} from '../queries'
+} from '../queries.js'
 
 
 export const getMatchedJobs = async (req, res) => {

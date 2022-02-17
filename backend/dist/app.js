@@ -7,7 +7,7 @@ import swaggerUI from "swagger-ui-express";
 import { options } from "./swaggerOptions.js";
 const app = express();
 const specs = swaggerJSDoc(options);
-app.set("port", 4001);
+app.set("port", 4000);
 app.use(cors());
 app.use(morgan("dev"));
 app.use(express.json());
