@@ -1,0 +1,8 @@
+@api = http://localhost:4000/home
+
+### get matched jobs for freelancer 
+{{api}}/freelancer/1
+
+### get matched freelancers by id
+{{api}}/company/1
+

@@ -16,3 +16,7 @@ export const getMatchedJobs = async (req, res) => {
     console.log(rows)
     res.json(rows)
 }
+
+// get job by id
+
+// apply to job (by job id)
