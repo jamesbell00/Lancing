@@ -1,18 +1,11 @@
 import express from "express";
 import cors from "cors";
 import morgan from "morgan";
-
-<<<<<<< HEAD
-import userRoutes from "./routes/freelancers.js";
-=======
 import userRoutes from "./routes/freelancers.js";
 import companyRoutes from "./routes/company.js";
 import jobRoutes from "./routes/jobs.js";
-<<<<<<< HEAD
->>>>>>> f5cc4d03aceac12fb46896bea5e2ec4da20f3da3
-=======
 import homeRoutes from './routes/home.js';
->>>>>>> d4af08d030a43947f11e64e1b391726c577cd9e0
+
 
 import swaggerJSDoc from "swagger-jsdoc";
 import swaggerUI from "swagger-ui-express";

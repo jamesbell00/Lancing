@@ -1,7 +1,5 @@
 import {connect} from '../database.js'
-<<<<<<< HEAD
-import {q_getAllFreelancers, q_getFreelancerById, q_getFreelancerProjects, q_deleteFreelancer} from '../queries.js'
-=======
+
 import {q_getAllFreelancers, 
         q_getFreelancerById, 
         q_getFreelancerProjects, 
@@ -9,7 +7,7 @@ import {q_getAllFreelancers,
         q_updateFreelancer, 
         q_saveFreelancer
 } from '../queries'
->>>>>>> f5cc4d03aceac12fb46896bea5e2ec4da20f3da3
+
 
 
 export const getAllFreelancers = async (req, res) => {

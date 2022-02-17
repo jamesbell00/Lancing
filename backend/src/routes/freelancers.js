@@ -4,13 +4,10 @@ import {
   getFreelancerById,
   getFreelancerProjects,
   deleteFreelancer,
-<<<<<<< HEAD
-} from "../controllers/freelancers.js";
-=======
   updateFreelancer,
   saveFreelancer,
 } from "../controllers/freelancers";
->>>>>>> f5cc4d03aceac12fb46896bea5e2ec4da20f3da3
+
 
 const router = Router();
 
