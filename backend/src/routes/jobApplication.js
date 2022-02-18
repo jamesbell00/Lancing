@@ -5,6 +5,6 @@ import {
 
 const router = Router();
 
-router.post("/Application/:fid/:jid",applyJob);
+router.post("/Application", applyJob);
 
 export default router;

@@ -1,9 +1,11 @@
-@api = http://localhost:4000/application
+@api = http://localhost:4000/Application
 
 ### Apply for job by freelancer id
-{{api}}/1/2
+POST {{api}}
 Content-Type: application/json
 
 {
-  "status_id": "1"
+    "freelancer_id": "1",
+    "job_id": "1",
+    "status_id": "1"
 }

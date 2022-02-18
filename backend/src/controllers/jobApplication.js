@@ -5,10 +5,11 @@ import {
 
 // apply to job (by job id)
 export const applyJob = async (req, res) => {
+    console.log("yeeeee")
     const connection = await connect();
-    cosnt [results]=await connection.query(q_applyJob, [
-        req.params.fid,
-        req.params.jid, 
+    const [results]=await connection.query(q_applyJob, [
+        req.body.freelancer_id,
+        req.body.job_id, 
         req.body.status_id])
     console.log(results)
     res.sendStatus(204);

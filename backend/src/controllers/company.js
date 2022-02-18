@@ -17,6 +17,7 @@ export const getAllCompanies = async (req, res) => {
 
 
 export const getCompanyById = async (req, res) => {
+    console.log('yeeeeee')
     const connection = await connect();
     const [rows] = await connection.query(q_getCompanyById, [req.params.id])
     console.log(rows[0])
