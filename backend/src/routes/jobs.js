@@ -10,4 +10,5 @@ router.get("/jobs", getAllJobs)
 
 router.get("/jobs/:id", getMatchedJobs)
 
+
 export default router;

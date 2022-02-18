@@ -2,6 +2,7 @@ import {connect} from '../database.js'
 import {
     q_getAllJobs,
     q_getMatchedJobs,
+    q_applyJob,
 } from '../queries.js'
 
 export const getAllJobs = async (req, res) => {
@@ -18,5 +19,6 @@ export const getMatchedJobs = async (req, res) => {
 }
 
 // get job by id
-
-// apply to job (by job id)
+export const getJob = async (req, res) => {
+    const connection = await connect();
+}
