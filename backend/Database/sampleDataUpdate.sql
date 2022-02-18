@@ -23,8 +23,7 @@ INSERT INTO Application_Status (status)
 VALUES
 ("Applied"),
 ("Under Review"), 
-("Aplication Withdrawn by Freelancer"),
-("Aplication Withdrawn by Company"),
+("Aplication Withdrawn"),
 ("Interview Offered"),
 ("Wait-listed"),
-("Job Offered"),
+("Job Offered");

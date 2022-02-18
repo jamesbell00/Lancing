@@ -1,4 +1,9 @@
 @api = http://localhost:4000/application
 
 ### Apply for job by freelancer id
-{{api}}/:fid/:jid
+{{api}}/1/2
+Content-Type: application/json
+
+{
+  "status_id": "1"
+}
