@@ -5,6 +5,7 @@ import userRoutes from "./routes/freelancers.js";
 import companyRoutes from "./routes/company.js";
 import jobRoutes from "./routes/jobs.js";
 import homeRoutes from './routes/home.js';
+import jobApplicationRoutes from './routes/jobApplication.js'; 
 
 
 import swaggerJSDoc from "swagger-jsdoc";
@@ -25,6 +26,7 @@ app.use(userRoutes);
 app.use(companyRoutes);
 app.use(jobRoutes);
 app.use(homeRoutes);
+app.use(jobApplicationRoutes);
 app.use("/docs", swaggerUI.serve, swaggerUI.setup(specs));
 
 export default app;
