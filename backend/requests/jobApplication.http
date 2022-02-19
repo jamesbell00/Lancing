@@ -5,14 +5,26 @@
 ### get Applications
 {{api}}
 
+### get all job applications by freelancer_id
+{{api}}/1
+
+### get a job application by freelancer_id and job_id
+{{api}}/1/1
+
+### update job application by freelancer_id and job_id
+PUT {{api}}/1/1
+Content-Type: application/json
+
+{
+    "status_id": "3"
+}
+
 ### Apply for job by freelancer id
-
-
 POST {{api}}
 Content-Type: application/json
 
 {
-    "freelancer_id": "1",
-    "job_id": "1",
+    "freelancer_id": "2",
+    "job_id": "2",
     "status_id": "1"
 }

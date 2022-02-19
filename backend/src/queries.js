@@ -57,7 +57,8 @@ export const q_getAllJobs = "select j.job_id, c.name as 'company', j.name as 'jo
 
 // selects
 export const q_getApplications = "select * from Applications"
-export const q_getApplicationStatus = 'select status_id from applications where freelancer_id=1 and job_id=?'
+export const q_getAllJobApplicationById= 'select status_id, job_id from applications where freelancer_id=? '
+export const q_getJobApplication= 'select status_id, job_id from applications where freelancer_id=? and job_id=? '
 
 //updates
 export const q_updateApplicationStatus = "update Applications SET ? WHERE freelancer_id=? and job_id=?"
