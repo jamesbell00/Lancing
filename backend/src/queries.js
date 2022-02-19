@@ -20,7 +20,7 @@ export const q_updateFreelancer = 'update Freelancer set ? where id = ?'
 export const q_deleteFreelancer = 'delete from Freelancer where id = ?'
 
 //inserts 
-export const q_insertFreelancer = 'insert into Freelancer (fname, lname, email, address, city, country, dob, phone, country_code) values (?, ?, ?, ?, ?, ?, ?, ?, ?)'
+export const q_saveFreelancer = 'insert into Freelancer (fname, lname, email, address, city, country, dob, phone, country_code) values (?, ?, ?, ?, ?, ?, ?, ?, ?)'
 
 
 
@@ -56,7 +56,7 @@ export const q_getAllJobs = "select j.job_id, c.name as 'company', j.name as 'jo
 ////////////////////////////////
 
 // selects
-export const q_getApplications = "select * from applications"
+export const q_getApplications = "select * from Applications"
 export const q_getApplicationStatus = 'select status_id from applications where freelancer_id=1 and job_id=?'
 
 //updates

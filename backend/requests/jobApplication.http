@@ -1,9 +1,9 @@
-@api = http://localhost:4000/Application
+@api = http://localhost:4000/jobApplication
 
 
 
 ### get Applications
-GET {{api}}
+{{api}}
 
 ### Apply for job by freelancer id
 

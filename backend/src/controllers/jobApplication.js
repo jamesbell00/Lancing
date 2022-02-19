@@ -8,17 +8,16 @@ import {
 
 // get job applications
 export const getApplications = async (req, res) => {
-    //console.log("yeeeee")
-    const connection = await connect();
-    const [rows]=await connection.query(q_getApplications)
-    console.log(rows)
+    
+    const connection = await connect()
+    const [rows]= await connection.query(q_getApplications)
     res.json(rows)
 }
 
 
 // apply to job (by job id)
 export const applyJob = async (req, res) => {
-    console.log("yeeeee")
+    
     const connection = await connect();
     const [results]=await connection.query(q_applyJob, [
         req.body.freelancer_id,
