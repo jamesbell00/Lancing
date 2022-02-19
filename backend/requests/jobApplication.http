@@ -1,6 +1,13 @@
 @api = http://localhost:4000/Application
 
+
+
+### get Applications
+GET {{api}}
+
 ### Apply for job by freelancer id
+
+
 POST {{api}}
 Content-Type: application/json
 

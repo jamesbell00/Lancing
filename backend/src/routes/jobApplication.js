@@ -1,10 +1,13 @@
 import { Router } from "express";
 import { 
-    applyJob
+    applyJob,
+    getApplications
 } from '../controllers/jobApplication.js';
 
 const router = Router();
 
-router.post("/Application", applyJob);
+router.get('/jobApplication', getApplications)
+
+router.post("/Application/jobs", applyJob);
 
 export default router;
