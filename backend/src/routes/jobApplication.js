@@ -17,6 +17,6 @@ router.get('/jobApplication/:id/:id2', getJobApplication)
 
 router.put('/jobApplication/:id/:id2', updateApplicationStatus)
 
-router.post("/Application/jobs", applyJob);
+router.post("/jobApplication", applyJob);
 
 export default router;
