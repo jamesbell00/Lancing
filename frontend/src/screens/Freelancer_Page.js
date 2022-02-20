@@ -104,6 +104,30 @@ const Freelancer_Page = props => {
               </View>
             </View>
           </View>
+          <Tab.Navigator
+      initialRouteName="Feed"
+      screenOptions={{
+        tabBarActiveTintColor: '#e91e63',
+        tabBarLabelStyle: { fontSize: 12 },
+        tabBarStyle: { backgroundColor: 'powderblue' },
+      }}
+    >
+      <Tab.Screen
+        name="Feed"
+        component={FeedScreen}
+        options={{ tabBarLabel: 'Home' }}
+      />
+      <Tab.Screen
+        name="Notifications"
+        component={NotificationsScreen}
+        options={{ tabBarLabel: 'experiences' }}
+      />
+      <Tab.Screen
+        name="Profile"
+        component={ProfileScreen}
+        options={{ tabBarLabel: 'reviews' }}
+      />
+    </Tab.Navigator>
           {/* profession Details */}
           <View>
             <Text style={styles.jobTitle}>About Me</Text>
@@ -182,11 +206,11 @@ const Freelancer_Page = props => {
 };
 
 
-const FeedScreen = props=> {
+function FeedScreen() {
     return (
       <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        <Text style={styles.jobTitle}>About Me</Text>
-              <Text style={styles.descriptionText}>{props.item.About}</Text>
+        <Text >About Me</Text>
+              {/*<Text style={styles.descriptionText}>{props.item.About}</Text>*/}
       </View>
     );
   }
