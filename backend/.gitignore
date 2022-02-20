@@ -1,9 +1,10 @@
-node_modules
-
-dist
-
-.env
-
 scripts
 
 docker-compose.yml
+
+dist
+
+node_modules
+
+.env
+

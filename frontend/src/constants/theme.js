@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const colors = {
     white: '#ffffff',
     lightWhite: '#f0f0f0',
@@ -21,4 +22,29 @@ const sizes = {
 export {
     colors,
     sizes
+=======
+const colors = {
+    white: '#ffffff',
+    lightWhite: '#f0f0f0',
+    black: '#000000',
+    lightBlack: '#252525',
+    orange: '#fa5805',
+    silver: '#bdc3c7',
+    blueGrey: '#79959c',
+    gray: '#636e72'
+}
+
+const sizes = {
+    h1: 10,
+    h2: 13,
+    h3: 15,
+    h4: 20,
+    h5: 25, 
+    h6: 28
+}
+
+export {
+    colors,
+    sizes
+>>>>>>> a369f3de800d62caf793328507d796bb9f92acc9
 }
