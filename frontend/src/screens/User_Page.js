@@ -44,7 +44,7 @@ const Edu = [
     },
 ]
 
-export default function User_Page ({ navigation }) {
+export default function User_Page ({ navigation }){
     return(            
         <View style={{flex: 1}}>
             {/* Header */}

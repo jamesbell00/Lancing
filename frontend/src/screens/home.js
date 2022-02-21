@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
-import {StyleSheet, View, Modal, ScrollView, Text, TextInput, TouchableOpacity, FlatList} from 'react-native'
+import {StyleSheet, View, Modal, ScrollView, Text, TextInput, TouchableOpacity, FlatList, StatusBar} from 'react-native'
 import * as theme from '../constants/theme'
 import * as company from '../constants/jobs';
 import Company from '../components/company';
 import * as Freelancer from '../constants/Freelancers';
 import Jobs from '../components/jobs';
+import User_Page from './User_Page';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import FilterModal from '../components/filterModal';
 import Feather from 'react-native-vector-icons/Feather';
@@ -18,8 +19,9 @@ export default function Home ({ navigation }) {
     const ToggleFilterVisible = () => {
         setFilterVisible(!filterVisible)
     }
-    return(            
+    return(       
        <View style={{flex: 1}}>
+       <StatusBar backgroundColor={theme.colors.blueGrey}/> 
            <Modal 
                 animationType="slide" 
                 visible={filterVisible}
@@ -41,7 +43,7 @@ export default function Home ({ navigation }) {
 
                 {/* Body */}
                 <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
-
+                     
                     {/* Title */}
                     <View>
                         <Text style={styles.title, { fontSize: 20, margin: 20}}>Hi User,</Text>
@@ -92,12 +94,6 @@ export default function Home ({ navigation }) {
                             }} />
                     </View>
                 </ScrollView>
-                <View style={styles.NavContainer}>
-                        <View style={styles.NavBar}>
-                            <Text> RRRR</Text>
-                        </View>
-                </View>
-                
             </View>
             
        </View>
