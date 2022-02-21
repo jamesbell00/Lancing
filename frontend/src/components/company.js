@@ -34,7 +34,7 @@ const Company = ({item}) => {
                     <Icon name="bookmark-border" size={30} style={[ id%2==0 ? {color: theme.colors.black} : {color: theme.colors.white} ]} />
                  </TouchableOpacity>
             </View>
-            <Text style={[styles.jobTitle, id%2==0 ? {color: theme.colors.black} : {color: theme.colors.white} ]}>{item.JobType}</Text>
+            <Text style={[styles.jobTitle, id%2==0 ? {color: theme.colors.black} : {color: theme.colors.white} ]}>{item.fname}</Text>
             <Text style={[styles.jobLocation, id%2==0 ? {color: theme.colors.black} : {color: theme.colors.white} ]}>{item.city}, {item.country} </Text> 
             <View style={styles.tagContainer}>
                 <View style={[styles.tag, {marginRight: 8}, id%2==0 ? {backgroundColor: theme.colors.lightBlack} : {backgroundColor: theme.colors.lightWhite} ]}>
