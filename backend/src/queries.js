@@ -31,7 +31,7 @@ export const q_saveFreelancer = 'insert into Freelancer (fname, lname, email, ad
 // selects
 export const q_getAllCompanies = 'select * from Company'
 export const q_getCompanyById = 'select * from Company where company_id = ?'
-export const q_getCompanyJobs = 'select * from Jobs where company_id = ?'
+export const q_getCompanyJobs = 'select  c.name as Company_Name, j.* from Jobs j join Company c on j.company_id= c.company_id where j.company_id = ?'
 
 // updates
 export const q_updateCompany = 'update Company set ? where company_id = ?'
@@ -57,14 +57,14 @@ export const q_getAllJobs = "select j.job_id, c.name as 'company', j.name as 'jo
 
 // selects
 export const q_getApplications = "select * from Applications"
-export const q_getAllJobApplicationById= 'select status_id, job_id from applications where freelancer_id=? '
-export const q_getJobApplication= 'select status_id, job_id from applications where freelancer_id=? and job_id=? '
+export const q_getAllJobApplicationById= 'select  a.freelancer_id, concat(f.fname," ",f.lname) as name, j.name as job, s.status as status from Applications a join Freelancer f on a.freelancer_id=f.id join Jobs j on a.job_id=j.job_id join Application_Status s on a.status_id=s.id where  a.freelancer_id=? '
+export const q_getJobApplication= 'select  a.freelancer_id, concat(f.fname," ",f.lname) as name, j.name as job, s.status as status from Applications a join Freelancer f on a.freelancer_id=f.id join Jobs j on a.job_id=j.job_id join Application_Status s on a.status_id=s.id where  a.freelancer_id=? and a.job_id=? '
 
 //updates
 export const q_updateApplicationStatus = "update Applications SET ? WHERE freelancer_id=? and job_id=?"
 
 //deletes
-export const q_deleteApplication="delete from Applications where freelancer_id=? and job_id="
+export const q_deleteApplication="delete from Applications where freelancer_id=? and job_id=?"
 
 // inserts
 export const q_applyJob = "insert into Applications (freelancer_id, job_id, status_id) values (?, ?, ?)"
@@ -80,3 +80,17 @@ export const q_getCompanyContact = 'select * from Company_Contact where company_
 
 // insert
 export const q_insertCompanyContact = 'insert into Company_Contact (email,name,phone,country_code, company_id) values (?,?,?,?,?)'
+
+
+////////////////////////////////
+// Login Info queries
+////////////////////////////////
+
+//selects
+export const q_logInInfo = "select * from login_info where email=? and password=?"
+
+//updates
+export const q_logInInfoUpdate = "update Login_info SET ? WHERE email=?"
+
+//inserts (Registration)
+export const q_register='insert into login_info (email, password) values (?,?)'

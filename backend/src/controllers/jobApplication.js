@@ -20,8 +20,8 @@ export const getApplications = async (req, res) => {
 export const getAllJobApplicationById = async (req, res) => {
     const connection = await connect();
     const [rows] = await connection.query(q_getAllJobApplicationById, [req.params.id])
-    console.log(rows[0])
-    res.json(rows[0])
+    console.log(rows)
+    res.json(rows)
 }
 
 // get a specific job application by freelancer id and job id
@@ -47,11 +47,12 @@ export const updateApplicationStatus = async (req, res) => {
 export const applyJob = async (req, res) => {
     const connection = await connect();
     const [results] = await connection.query(q_applyJob, [
+        req.body.freelancer_id,
+        req.body.job_id,
         req.body.status_id
     ])
     res.json({
         id: results.insertId,
-        id2: results.insertId2,
         ...req.body,
-    })
+    });
 }
