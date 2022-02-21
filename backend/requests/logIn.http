@@ -1,0 +1,12 @@
+@api = http://localhost:3000/logIn
+
+{{api}}/
+###
+
+POST {{api}}/registration
+Content-Type: application/json
+
+{
+    "email": "josefidel65@outlook.es",
+    "password": "123456"
+}
