@@ -265,4 +265,3 @@ CREATE TABLE `Job_Skills` (
   FOREIGN KEY (`skill_id`) REFERENCES `Skills`(`skill_id`)
   	on delete cascade
     on update cascade
-);

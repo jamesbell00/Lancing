@@ -12,6 +12,7 @@ export const q_getMatchedFreelancers = `select c.company_id, j.name as 'job', co
 export const q_getFreelancerProjects = "select j.name as 'job', c.name as 'company', j.description, js.status from Freelancer f join Freelancer_Jobs fj on f.id = fj.freelancer_id join Jobs j on j.job_id = fj.job_id join Company c on j.company_id = c.company_id join Job_Status js on fj.status_id = js.id where f.id = ?"
 export const q_getAllFreelancers = 'select * from Freelancer'
 export const q_getFreelancerById = 'select * from Freelancer where id = ?'
+export const q_getFreelancerByEmail = 'select * from Freelancer where email= ?'
 
 //updates
 export const q_updateFreelancer = 'update Freelancer set ? where id = ?'
@@ -20,7 +21,7 @@ export const q_updateFreelancer = 'update Freelancer set ? where id = ?'
 export const q_deleteFreelancer = 'delete from Freelancer where id = ?'
 
 //inserts 
-export const q_saveFreelancer = 'insert into Freelancer (fname, lname, email, address, city, country, dob, phone, country_code) values (?, ?, ?, ?, ?, ?, ?, ?, ?)'
+export const q_saveFreelancer = 'insert into Freelancer (fname,lname,email, address, city, country, dob, phone,country_code) values (?, ?, ?, ?, ?, ?, ?, ?,?)'
 
 
 
@@ -33,6 +34,7 @@ export const q_getAllCompanies = 'select * from Company'
 export const q_getCompanyById = 'select * from Company where company_id = ?'
 export const q_getCompanyJobs = 'select  c.name as Company_Name, j.* from Jobs j join Company c on j.company_id= c.company_id where j.company_id = ?'
 
+
 // updates
 export const q_updateCompany = 'update Company set ? where company_id = ?'
 
@@ -40,7 +42,7 @@ export const q_updateCompany = 'update Company set ? where company_id = ?'
 export const q_deleteCompany = 'delete from Company where id = ?'
 
 // inserts
-export const q_insertCompany = 'insert into Company ()'
+export const q_insertCompany = 'insert into Company (name, address) values(?,?)'
 
 
 ////////////////////////////////
@@ -76,8 +78,8 @@ export const q_applyJob = "insert into Applications (freelancer_id, job_id, stat
 ////////////////////////////////
 
 // selects
-export const q_getCompanyContact = 'select * from Company_Contact where company_id = ?'
-
+export const q_getCompanyContactById = 'select * from Company_Contact where company_id = ?'
+export const q_getCompanyContactByEmail = 'select * from Company_Contact where email=?'
 // insert
 export const q_insertCompanyContact = 'insert into Company_Contact (email,name,phone,country_code, company_id) values (?,?,?,?,?)'
 
@@ -87,10 +89,14 @@ export const q_insertCompanyContact = 'insert into Company_Contact (email,name,p
 ////////////////////////////////
 
 //selects
-export const q_logInInfo = "select * from login_info where email=? and password=?"
+export const q_getFreelancerPassword ="select password from Freelancers_Login_info where email=?"
+export const q_getCompanyPassword = "select password from Company_Login_info where email=?"
+
 
 //updates
-export const q_logInInfoUpdate = "update Login_info SET ? WHERE email=?"
+export const q_updateFreelancerPassword = "update Freelancers_Login_info SET password=? WHERE email=?"
+export const q_updateCompanyPassword = "update Company_Login_info SET password=? WHERE email=? "
 
 //inserts (Registration)
-export const q_register='insert into login_info (email, password) values (?,?)'
+export const q_registerFreelancer = "insert into Freelancers_login_info(email, password) values (?,?)"
+export const q_registerCompany='insert into Company_login_info (email, password) values (?,?)'

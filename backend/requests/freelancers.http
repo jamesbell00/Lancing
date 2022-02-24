@@ -14,7 +14,7 @@
 
 
 ### delete a single freelancer
-DELETE {{api}}/20
+DELETE {{api}}/47
 
 
 ### update freelancer
@@ -22,7 +22,7 @@ PUT {{api}}/23
 Content-Type: application/json
 
 {
-  "phone": "21354603956"
+  "phone": "21354603957"
 }
 
 
