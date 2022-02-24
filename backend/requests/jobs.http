@@ -1,4 +1,4 @@
-@api = http://localhost:4000/jobs
+@api = http://localhost:3000/jobs
 
 ### get all jobs
 {{api}}

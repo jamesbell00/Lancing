@@ -25,7 +25,7 @@ const Company = ({item}) => {
             
             <View style={styles.header}>
                 <Image
-                    source={item.logo}
+                    source={require('../images/jack.jpg')}
                     borderRadius={10}  
                     style={{width: 40, height: 40}} />
                     
@@ -34,14 +34,14 @@ const Company = ({item}) => {
                     <Icon name="bookmark-border" size={30} style={[ id%2==0 ? {color: theme.colors.black} : {color: theme.colors.white} ]} />
                  </TouchableOpacity>
             </View>
-            <Text style={[styles.jobTitle, id%2==0 ? {color: theme.colors.black} : {color: theme.colors.white} ]}>{item.job}</Text>
-            <Text style={[styles.jobLocation, id%2==0 ? {color: theme.colors.black} : {color: theme.colors.white} ]}>{item.location}</Text> 
+            <Text style={[styles.jobTitle, id%2==0 ? {color: theme.colors.black} : {color: theme.colors.white} ]}>{item.fname}</Text>
+            <Text style={[styles.jobLocation, id%2==0 ? {color: theme.colors.black} : {color: theme.colors.white} ]}>{item.city}, {item.country} </Text> 
             <View style={styles.tagContainer}>
                 <View style={[styles.tag, {marginRight: 8}, id%2==0 ? {backgroundColor: theme.colors.lightBlack} : {backgroundColor: theme.colors.lightWhite} ]}>
-                    <Text style={[styles.jobLocation, {fontWeight: 'bold'}, id%2==0 ? {color: theme.colors.lightWhite} : {color: theme.colors.lightBlack} ]}>{item.time}</Text>
+                    <Text style={[styles.jobLocation, {fontWeight: 'bold'}, id%2==0 ? {color: theme.colors.lightWhite} : {color: theme.colors.lightBlack} ]}>'Part Time'</Text>
                 </View>
                 <View style={[styles.tag, id%2==0 ? {backgroundColor: theme.colors.lightBlack} : {backgroundColor: theme.colors.lightWhite} ]}>
-                    <Text style={[styles.jobLocation, {fontWeight: 'bold'}, id%2==0 ? {color: theme.colors.lightWhite} : {color: theme.colors.lightBlack} ]}>{item.loc}</Text>
+                    <Text style={[styles.jobLocation, {fontWeight: 'bold'}, id%2==0 ? {color: theme.colors.lightWhite} : {color: theme.colors.lightBlack} ]}>'Anywhere'</Text>
                 </View>
             </View>
         </TouchableOpacity>

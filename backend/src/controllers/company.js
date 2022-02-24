@@ -3,7 +3,7 @@ import {
     q_getAllCompanies,
     q_getCompanyById,
     q_getCompanyJobs,
-    q_getCompanyContact,
+    q_getCompanyContactById,
     q_insertCompanyContact,
 } from '../queries.js'
 
@@ -17,6 +17,7 @@ export const getAllCompanies = async (req, res) => {
 
 
 export const getCompanyById = async (req, res) => {
+    console.log('yeeeeee')
     const connection = await connect();
     const [rows] = await connection.query(q_getCompanyById, [req.params.id])
     console.log(rows[0])
@@ -33,7 +34,7 @@ export const getCompanyJobs = async (req, res) => {
 
 export const getCompanyContact = async (req, res) => {
     const connection = await connect();
-    const [rows] = await connection.query(q_getCompanyContact, [req.params.id])
+    const [rows] = await connection.query(q_getCompanyContactById, [req.params.id])
     res.json(rows[0])
 }
 

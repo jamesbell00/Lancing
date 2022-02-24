@@ -1,0 +1,62 @@
+@api = http://localhost:3000
+
+{{api}}/loginFreelancer/lucas.zoilo@slu.edu
+Content-Type: application/json
+
+{
+    "password": "123456"
+}
+###
+{{api}}/loginCompany/john.steward@gamil.com
+Content-Type: application/json
+
+{
+    "password": "123456"
+}
+###
+PUT {{api}}/updateFreelancerPassword/lucas.zoilo@slu.edu
+Content-Type: application/json
+
+{
+    "passwordOld": "654321",
+    "passwordNew": "123456"
+}
+
+###
+PUT {{api}}/updateCompanyPassword/john.steward@gamil.com
+Content-Type: application/json
+
+{
+    "passwordOld": "654321",
+    "passwordNew": "123456"
+}
+### 
+POST {{api}}/register/Freelancer
+Content-Type: application/json
+
+{
+    "fname": "Lucas",
+    "lname": "Zoilo",
+    "email": "lucas.zoilo@slu.edu", 
+    "address": "Esperanza 33",
+    "city": "Madrid", 
+    "country": "Spain",
+    "dob": "1988-12-06", 
+    "phone": "685594492",
+    "country_code": "34",
+    "password": "123456"
+}
+
+###
+POST {{api}}/register/Company
+content-type: application/json
+
+{
+    "Company_name":"Intel",
+    "address":"Intel Street",
+    "email":"john.steward@gamil.com",
+    "Contact_name":"John Steward", 
+    "phone":"624050678",
+    "country_code":"34", 
+    "password":"123456"
+}

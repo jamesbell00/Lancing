@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {StyleSheet, View, Modal, ScrollView, Text, TextInput, TouchableOpacity, FlatList, StatusBar} from 'react-native'
 import * as theme from '../constants/theme'
 import * as company from '../constants/jobs';
@@ -12,6 +12,8 @@ import Feather from 'react-native-vector-icons/Feather';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useIsFocused } from '@react-navigation/native';
+import {getFreelancers} from '../../api';
 
 export default function Home ({ navigation }) {
     const [filterVisible, setFilterVisible] = useState(false)
@@ -19,7 +21,30 @@ export default function Home ({ navigation }) {
     const ToggleFilterVisible = () => {
         setFilterVisible(!filterVisible)
     }
-    return(       
+    const[freelancers,setFreelancers] = useState([]);
+    
+    const isFocused = useIsFocused();
+
+    const loadFreelancers = async() =>{
+        const data = await getFreelancers();
+        setFreelancers(data)
+      }
+    
+    const[freelancers2,setFreelancers2] = useState([]);
+   
+  
+    const loadFreelancers2 = async() =>{
+        const data = await getFreelancers();
+        setFreelancers2(data)
+    }
+    useEffect(() =>{  
+        loadFreelancers()
+        loadFreelancers2()
+      }, [isFocused]);
+
+    
+
+    return( 
        <View style={{flex: 1}}>
        <StatusBar backgroundColor={theme.colors.blueGrey}/> 
            <Modal 
@@ -66,7 +91,7 @@ export default function Home ({ navigation }) {
                     <View style={styles.popularContainer}>
                         <Text style={[styles.popularText, {marginLeft: 20}]}>Suggested Profiles</Text>
                         <FlatList 
-                            data={Freelancer.Freelancers}
+                            data={freelancers}
                             horizontal={true}
                             showsHorizontalScrollIndicator={false}
                             keyExtractor={item => item.id}
@@ -85,7 +110,7 @@ export default function Home ({ navigation }) {
                     <View style={[styles.popularContainer, {marginRight: 20, marginLeft: 20, marginBottom: 70}]}>
                         <Text style={styles.popularText}>Other Freelancers</Text>
                         <FlatList 
-                            data={company.companies}
+                            data={freelancers2}
                             keyExtractor={item => item.id}
                             renderItem={({ item }) => {
                                 return (

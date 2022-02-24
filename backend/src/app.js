@@ -5,6 +5,8 @@ import userRoutes from "./routes/freelancers.js";
 import companyRoutes from "./routes/company.js";
 import jobRoutes from "./routes/jobs.js";
 import homeRoutes from './routes/home.js';
+import jobApplicationRoutes from './routes/jobApplication.js'; 
+import logInRoutes from './routes/logIn.js'; 
 
 
 import swaggerJSDoc from "swagger-jsdoc";
@@ -14,7 +16,7 @@ import { options } from "./swaggerOptions.js";
 const app = express();
 const specs = swaggerJSDoc(options);
 
-app.set("port", 4000);
+app.set("port", 3000);
 
 app.use(cors());
 app.use(morgan("dev"));
@@ -25,6 +27,8 @@ app.use(userRoutes);
 app.use(companyRoutes);
 app.use(jobRoutes);
 app.use(homeRoutes);
+app.use(jobApplicationRoutes);
+app.use(logInRoutes);
 app.use("/docs", swaggerUI.serve, swaggerUI.setup(specs));
 
 export default app;

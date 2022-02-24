@@ -1,3 +1,4 @@
+
 const colors = {
     white: '#ffffff',
     lightWhite: '#f0f0f0',
@@ -21,4 +22,5 @@ const sizes = {
 export {
     colors,
     sizes
+
 }

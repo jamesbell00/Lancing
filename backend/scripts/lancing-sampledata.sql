@@ -59,15 +59,7 @@ INSERT INTO Company (name, address)
 VALUES
 	("Apple",	"1 Apple Street"),				
 	("Microsoft",	"2 Microsoft Lane"),					
-	("Tesla",	"14 Tesla Avenue"),
-	("Amazon",	"4 Amazon Villa"),
-	("Paypal",	"18 Paypal Street"),
-	("Metaverse",	"Metaverse Park"),
-	("Tinder",	"11 Tinder Avenue"),
-	("Deloitte",	"9 Deloitte Street"),
-	("Google",	"Google Plaza"),
-	("Sony",	"1 Sony Street");
-
+	("Tesla",	"14 Tesla Avenue");		
 
 
 
@@ -83,7 +75,6 @@ VALUES
 	(4,	"Backend Developer",	"work hand in hand with front end dev to build the back end"),
 	(2,	"Android Developer",	"create an app for android devices and destroy the competition"),
 	(1,	"Cybersecurity Engineer",	"install and maintain isp system");
-
 
 
 INSERT INTO Skill_Categories (category_name)
@@ -217,4 +208,8 @@ VALUES
 	(5,	2,	1,	3),
 	(5,	2,	3,	2),
 	(5,	2,	5,	4);
+    
+INSERT INTO Job_Status Values (4, "Finished");
+
+INSERT INTO Freelancer_Jobs Values (1, 2, 4);
 

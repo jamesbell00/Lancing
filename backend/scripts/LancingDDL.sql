@@ -5,7 +5,7 @@
 ##
 ## 		Date created: Jan 18, 2022
 ##
-##		Last modified: Feb 19, 2022 
+##		Last modified: Feb 3, 2022 
 ##		by James
 #############################################
 
@@ -32,6 +32,17 @@ CREATE TABLE `Freelancer` (
   `updated_date` timestamp default null on update current_timestamp,
   PRIMARY KEY (`id`)
 );
+
+-- CREATE TABLE `CV` (
+-- 	`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+--     `freelancer_id` int not null,
+-- 	`filename` VARCHAR(128) NOT NULL,
+-- 	`mimetype` VARCHAR(64) NOT NULL,
+-- 	`data` MEDIUMBLOB NOT NULL,
+-- 	FOREIGN KEY (`freelancer_id`) REFERENCES `Freelancer`(`id`)
+-- 	on delete set null
+-- 	on update cascade    
+-- );
 
 CREATE TABLE `Sectors` (
   `sector_id` int auto_increment,
@@ -227,25 +238,17 @@ CREATE TABLE `Company_Contact` (
     on update cascade
 );
 
-CREATE TABLE `Freelancers_Login_Info` (
+CREATE TABLE `Login_Info` (
   `email` varchar(30),
   `password` varchar(30),
   PRIMARY KEY (`email`),
-  foreign key (`email`) references `Freelancer`(`email`)
-	on delete cascade
+  FOREIGN KEY (`email`) REFERENCES `Company_Contact`(`email`)
+  	on delete cascade
+    on update cascade,
+  FOREIGN KEY (`email`) REFERENCES `Freelancer`(`email`)
+  	on delete cascade
     on update cascade
 );
-
-CREATE TABLE `Company_Login_Info` (
-  `email` varchar(30),
-  `password` varchar(30),
-  PRIMARY KEY (`email`),
-  foreign key (`email`) references `Company_Contact`(`email`)
-	on delete cascade
-    on update cascade
-);
-
-
 
 CREATE TABLE `Job_Skills` (
   `job_id` int,

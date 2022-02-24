@@ -1,9 +1,30 @@
-@api = http://localhost:4000/application
+@api = http://localhost:3000/jobApplication
 
-### Apply for job by freelancer id
-{{api}}/1/2
+
+
+### get Applications
+{{api}}
+
+### get all job applications by freelancer_id
+{{api}}/1
+
+### get a job application by freelancer_id and job_id
+{{api}}/2/3
+
+### update job application by freelancer_id and job_id
+PUT {{api}}/1/1
 Content-Type: application/json
 
 {
-  "status_id": "1"
+    "status_id": "2"
+}
+
+### Apply for job by freelancer id (freelancer_id/job_id)
+POST {{api}}
+Content-Type: application/json
+
+{
+    "freelancer_id": "2",
+    "job_id": "3",
+    "status_id": "4"
 }
