@@ -14,7 +14,7 @@
 
 
 ### delete a single freelancer
-DELETE {{api}}/47
+DELETE {{api}}/49
 
 
 ### update freelancer
