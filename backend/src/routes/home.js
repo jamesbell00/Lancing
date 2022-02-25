@@ -6,8 +6,8 @@ import {
 
 const router = Router();
 
-router.get("/home/freelancer/:id", getMatchedJobs)
+router.get("/frhome/:id", getMatchedJobs)
 
-router.get("/home/company/:id", getMatchedFreelancers)
+router.get("/cohome/:id", getMatchedFreelancers)
 
 export default router;
