@@ -1,8 +1,8 @@
-@api = http://localhost:3000/home
+@api = http://localhost:3000
 
 ### get matched jobs for freelancer 
-{{api}}/freelancer/1
+{{api}}/frhome/1
 
 ### get matched freelancers by id
-{{api}}/company/1
+{{api}}/cohome/1
 

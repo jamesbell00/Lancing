@@ -1,4 +1,5 @@
 import bcrypt from 'bcryptjs';
+// import { compareSync } from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 //import User from '../models/user.js';
 
@@ -10,13 +11,14 @@ export const logInFreelancer = async (req, res) => {
     const connection = await connect()
     const [rows] = await connection.query(q_getFreelancerPassword, [req.params.email])
     const [results]= await connection.query(q_getFreelancerByEmail,[req.params.email])
-    if(rows)
-    {const comparison = await bcrypt.compare(req.body.password, rows[0].password)
-        if(comparison)
-            {res.json(results[0])}
-        else
-            {res.status(502).json({message: "Password incorrect"});}
-    }else{
+    if(rows) {
+        console.log(rows)
+        const comparison = await bcrypt.compare(req.body.password, rows[0].password)
+            if(comparison)
+                {res.json(results[0])}
+            else
+                {res.status(502).json({message: "Password incorrect"});}
+    } else{
         return res.status(404).json({message: "Email does  not exists"});
     }
 }
