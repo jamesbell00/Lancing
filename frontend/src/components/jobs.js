@@ -8,12 +8,12 @@ const Jobs = ({item}) => {
     return(
         <View style={styles.container}>
             <Image
-                source={require('../images/jack.jpg')}
+                source={require(/*'../images/jack.jpg'*/'../images/image1.png')}
                 borderRadius={10}
                 style={{width: 40, height: 40}} />
             <View style={styles.textContainer}>
-                <Text style={styles.jobTitle}>{item.JobType}</Text>
-                <Text style={styles.jobLocation}>{item.city}</Text>
+                <Text style={styles.jobTitle}>{item.title}</Text>
+                <Text style={styles.jobLocation}>{item.subtitle}</Text>
             </View>
             <View style={styles.iconContainer}>
                 <Icon name="more-vert" size={30} color={theme.colors.black} />
