@@ -13,7 +13,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useIsFocused } from '@react-navigation/native';
-import {getFreelancers} from '../../api';
+import {getHomePageCompany, getHomePageFreelancers} from '../../api';
 
 export default function Home ({ navigation }) {
     const [filterVisible, setFilterVisible] = useState(false)
@@ -21,29 +21,29 @@ export default function Home ({ navigation }) {
     const ToggleFilterVisible = () => {
         setFilterVisible(!filterVisible)
     }
-    const[freelancers,setFreelancers] = useState([]);
-    
+    const[homePageDatabase,setHomePageDatabase] = useState([]);
     const isFocused = useIsFocused();
-
-    const loadFreelancers = async() =>{
-        const data = await getFreelancers();
-        setFreelancers(data)
-      }
-    
-    const[freelancers2,setFreelancers2] = useState([]);
-   
-  
-    const loadFreelancers2 = async() =>{
-        const data = await getFreelancers();
-        setFreelancers2(data)
+    const userTypeId= 2;                      /// USERTYPE only usig this for now, when login is done, this will be updated
+    const loadHomePageDatabase=async() =>{
+        
+        if(userTypeId==1){
+            const data = await getHomePageFreelancers();
+            setHomePageDatabase(data)
+            
+            
+        }
+        else if (userTypeId==2){
+            const data = await getHomePageCompany();
+            setHomePageDatabase(data)
+        }
+        
     }
     useEffect(() =>{  
-        loadFreelancers()
-        loadFreelancers2()
+        loadHomePageDatabase()
       }, [isFocused]);
-
     
-
+    
+    
     return( 
        <View style={{flex: 1}}>
        <StatusBar backgroundColor={theme.colors.blueGrey}/> 
@@ -72,7 +72,7 @@ export default function Home ({ navigation }) {
                     {/* Title */}
                     <View>
                         <Text style={styles.title, { fontSize: 20, margin: 20}}>Hi User,</Text>
-                        <Text style={styles.title, {fontSize:24, paddingLeft:20, fontWeight:'bold'}}>Find Your Perfect Team Member</Text>
+                        <Text style={styles.title, {fontSize:24, paddingLeft:20, fontWeight:'bold'}}>Find Your Perfect Match</Text>
                     </View>
 
                     {/* Search */}
@@ -89,13 +89,13 @@ export default function Home ({ navigation }) {
 
                     {/* Popular Companies */}
                     <View style={styles.popularContainer}>
-                        <Text style={[styles.popularText, {marginLeft: 20}]}>Suggested Profiles</Text>
+                        <Text style={[styles.popularText, {marginLeft: 20}]}>Suggested  </Text>
                         <FlatList 
-                            data={freelancers}
+                            data= {homePageDatabase}
                             horizontal={true}
                             showsHorizontalScrollIndicator={false}
                             keyExtractor={item => item.id}
-                            renderItem={({ item }) => {
+                            renderItem={({ item }) => {    
                                 return (
                                     <TouchableOpacity
                                         activeOpacity={1}
@@ -108,9 +108,9 @@ export default function Home ({ navigation }) {
 
                     {/* Recent Jobs */}
                     <View style={[styles.popularContainer, {marginRight: 20, marginLeft: 20, marginBottom: 70}]}>
-                        <Text style={styles.popularText}>Other Freelancers</Text>
+                        <Text style={styles.popularText}>Other </Text>
                         <FlatList 
-                            data={freelancers2}
+                            data= {homePageDatabase}
                             keyExtractor={item => item.id}
                             renderItem={({ item }) => {
                                 return (

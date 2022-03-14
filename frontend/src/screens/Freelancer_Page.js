@@ -9,7 +9,7 @@ import {
   TouchableOpacity,
   FlatList,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+//import Icon from 'react-native-vector-icons/MaterialIcons';
 import CommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {NavigationContainer} from '@react-navigation/native';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
@@ -23,11 +23,11 @@ const Freelancer_Page = props => {
       {/* Header */}
       <View style={styles.header}>
         <TouchableOpacity onPress={props.closeModal}>
-          <Icon
-            name="keyboard-arrow-left"
-            size={30}
-            color={theme.colors.black}
-          />
+        {/*/<Icon
+            //name="keyboard-arrow-left"
+            //size={30}
+           // color={theme.colors.black}
+        />*/}
         </TouchableOpacity>
         <Text style={styles.headerTitle}>{props.item.company}</Text>
         <View style={{padding: 20}}></View>
@@ -54,12 +54,12 @@ const Freelancer_Page = props => {
                 }}
                 source={props.item.logo}
               />
-              <Icon
+              {/*<Icon
                 name="bookmark-border"
                 size={25}
                 color={theme.colors.black}
                 style={{left: 99}}
-              />
+              />*/}
             </View>
             <Text style={styles.jobTitle}>{props.item.job}</Text>
             <View
