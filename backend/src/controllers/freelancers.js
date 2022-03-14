@@ -50,9 +50,10 @@ export const updateFreelancer = async (req, res) => {
 export const saveFreelancer = async (req, res) => {
     const connection = await connect();
     const [results] = await connection.query(q_saveFreelancer, [
+        req.user.id,
         req.body.fname, 
         req.body.lname, 
-        req.body.email, 
+        req.user.email, 
         req.body.address, 
         req.body.city, 
         req.body.country, 

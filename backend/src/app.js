@@ -7,6 +7,7 @@ import jobRoutes from "./routes/jobs.js";
 import homeRoutes from './routes/home.js';
 import jobApplicationRoutes from './routes/jobApplication.js'; 
 import logInRoutes from './routes/logIn.js'; 
+const multer = require('multer');
 
 import swaggerJSDoc from "swagger-jsdoc";
 import swaggerUI from "swagger-ui-express";
@@ -25,6 +26,8 @@ const app = express();
 const specs = swaggerJSDoc(options);
 
 ////////////////////////////////
+ 
+
 //use cookie parser
 app.use(cookieParser('secret'));
 
@@ -53,6 +56,14 @@ app.use(connectFlash());
 //Config passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
+
+passport.serializeUser(function(user, done) {
+    done(null, user);
+  });
+  
+passport.deserializeUser(function(user, done) {
+    done(null, user);
+  });
 
 
 ////////////////////////////////

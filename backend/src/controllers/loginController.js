@@ -34,6 +34,7 @@ export const handleLogin = async (req, res) => {
 };
 
 export const checkLoggedIn = (req, res, next) => {
+    console.log("teest")
     if (!req.isAuthenticated()) {
         return res.redirect("/login");
     }

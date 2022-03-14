@@ -4,6 +4,7 @@ import {
     getCompanyById,
     getCompanyJobs,
     getCompanyContact,
+    saveCompany,
   } from "../controllers/company.js";
 
 
@@ -85,6 +86,15 @@ router.get("/companies/:id", getCompanyById);
  */
   router.get("/companies/:id/companyContact", getCompanyContact);
 
+
+/**
+ * @swagger
+ * /companies:
+ *  post:
+ *    summary: inserts new row into company table
+ *    tags: [Company]
+ */
+  router.post("/companies", saveCompany);
 
 
 export default router;
