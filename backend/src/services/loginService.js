@@ -38,6 +38,38 @@ export const findUserByEmail = async (email) => {
     });
 };
 
+export const findFreelancerByEmail = async (email) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const connection = await connect();
+            const [rows] = await connection.query(
+                ' SELECT * FROM `Freelancer` WHERE `email` = ?  ', email
+            );
+            let user = rows[0];
+            resolve(user)
+
+        } catch (err) {
+            reject(err);
+        }
+    });
+};
+
+export const findCompanyByEmail = async (email) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const connection = await connect();
+            const [rows] = await connection.query(
+                ' SELECT * FROM `Company` WHERE `email` = ?  ', email
+            );
+            let user = rows[0];
+            resolve(user)
+
+        } catch (err) {
+            reject(err);
+        }
+    });
+};
+
 export const findUserById = async (id) => {
     return new Promise(async (resolve, reject) => {
         try {

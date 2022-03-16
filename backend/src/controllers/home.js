@@ -6,6 +6,7 @@ import {
     q_getHomePageJobs
 } from '../queries.js'
 
+
 export const getHomePageAllJobs= async (req, res) => {
     const db = await connect()
     const [rows] = await db.query(q_getHomePageAllJobs)

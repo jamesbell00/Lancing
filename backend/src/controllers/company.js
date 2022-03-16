@@ -4,7 +4,7 @@ import {
     q_getCompanyById,
     q_getCompanyJobs,
     q_getCompanyContactById,
-    q_insertCompanyContact,
+    q_insertCompany,
 } from '../queries.js'
 
 
@@ -17,7 +17,6 @@ export const getAllCompanies = async (req, res) => {
 
 
 export const getCompanyById = async (req, res) => {
-    console.log('yeeeeee')
     const connection = await connect();
     const [rows] = await connection.query(q_getCompanyById, [req.params.id])
     console.log(rows[0])
@@ -38,3 +37,15 @@ export const getCompanyContact = async (req, res) => {
     res.json(rows[0])
 }
 
+export const saveCompany = async (req, res) => {
+    const connection = await connect();
+    const [results] = await connection.query(q_insertCompany, [
+        req.user.id,
+        req.body.name,
+        req.body.address
+    ])
+    res.json({
+        id: results.insertId,
+        ...req.body,
+    })
+}

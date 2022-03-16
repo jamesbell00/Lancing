@@ -13,4 +13,5 @@ router.get("/frhome/:id", getHomePageJobs)
 router.get("/cohome/:id", getHomePageFreelancers) 
 
 
+
 export default router;
