@@ -8,12 +8,9 @@ import {
 
 const router = Router();
 
-router.get("/frhome", getHomePageJobs)
+router.get("/frhome/:id", getHomePageJobs)
 
-router.get("/cohome", getHomePageFreelancers) 
+router.get("/cohome/:id", getHomePageFreelancers) 
 
-router.get("/frhome/:id", getMatchedJobs)
-
-router.get("/cohome/:id", getMatchedFreelancers)
 
 export default router;

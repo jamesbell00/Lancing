@@ -38,6 +38,19 @@ router.get("/register", getPageRegister);
 router.post("/register", validateRegister, createNewUser);
 router.post("/logout", postLogOut);
 
+//upload images and files
+export function createFolder(folderName){
+  try {
+    if (!fs.existsSync(folderName)) {
+      fs.mkdirSync(folderName)
+      fs.mkdirSync(folderName+'/images')
+      fs.mkdirSync(folderName+'/files')
+    }
+  } catch (err) {
+    console.error(err)
+  }
+
+}
 
 var form = '<form action="/upload" method="post" enctype="multipart/form-data">' +
 '<input type="file" name="filetoupload"><br>' +
@@ -52,9 +65,13 @@ router.get('/home', function (req, res){
 router.post('/upload', (req, res) => {
   console.log("uploading pic")
     var form = new formidable.IncomingForm();
+    const id=5;
+    const userType='Freelancer';
+    const folderName = `/Users/joseluisparedesmunoz/Lancing/backend/uploads/Freelancer/${id}`
+    createFolder(folderName)
     form.parse(req, function (err, fields, files) {
         var oldpath = files.filetoupload.filepath;
-        var newpath = path.join(__dirname, '/../../', '/uploads/images/fullsize/', files.filetoupload.originalFilename);
+        var newpath = path.join(__dirname, '/../../', `/uploads/Freelancer/${id}/images`, files.filetoupload.originalFilename);  ///uploads/images/fullsize/
         fs.rename(oldpath, newpath, function (err) {
         if (err) throw err;
           res.end("file uploaded and moved")
@@ -83,3 +100,5 @@ export default router;
 //     router.post("/logout", postLogOut);
 //     return app.use("/home", router);
 // };
+
+
