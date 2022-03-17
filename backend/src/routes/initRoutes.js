@@ -76,6 +76,7 @@ export function createFolder(folderName){
 }
 
 
+// Testing form upload
 var form = '<form action="/upload" method="post" enctype="multipart/form-data">' +
 '<input type="file" name="filetoupload"><br>' +
 '<input type="submit">' +

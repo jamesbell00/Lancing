@@ -14,7 +14,7 @@ const Freelancers = [
                 company: 'Deloitte',
                 start: 'Jan 2018',
                 end: 'Feb 2018',
-                position: 'Data Analysist',
+                position: 'Data Analyst',
             },
             {
                 id: '2',
@@ -46,6 +46,15 @@ const Freelancers = [
                 end: 'Jun 2020',
                 diploma: 'Computer Technologies',
             },
+        ],
+        projects : [
+            {
+                id:'1',
+                title: 'Database Analyst',
+                company: 'Gamma',
+                duration: '6 months'
+                
+            }
         ]
     },
     {
@@ -111,14 +120,14 @@ const Freelancers = [
         Exp : [
             {
                 id: '1',
-                company: 'Phone Service Center Tunisia',
+                company: '',
                 start: 'Jan 2018',
                 end: 'Feb 2018',
                 position: 'Intern',
             },
             {
                 id: '2',
-                company: '3oulti.tn',
+                company: 'fff',
                 start: 'May 2020',
                 end: 'Jul 2020',
                 position: 'Web Master',

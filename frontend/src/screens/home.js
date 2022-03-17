@@ -5,13 +5,12 @@ import * as company from '../constants/jobs';
 import Company from '../components/company';
 import * as Freelancer from '../constants/Freelancers';
 import Jobs from '../components/jobs';
-import User_Page from './User_Page';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import FilterModal from '../components/filterModal';
 import Feather from 'react-native-vector-icons/Feather';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { createDrawerNavigator } from '@react-navigation/drawer';
 import { useIsFocused } from '@react-navigation/native';
 import {getHomePageCompany, getHomePageFreelancers} from '../../api';
 
@@ -22,6 +21,7 @@ export default function Home ({ navigation }) {
     const ToggleFilterVisible = () => {
         setFilterVisible(!filterVisible)
     }
+
     const[homePageDatabase,setHomePageDatabase] = useState([]);
     const isFocused = useIsFocused();
     const userId=1;                             /// USERID only usig this for now, when login is done, this will be updated
@@ -43,10 +43,8 @@ export default function Home ({ navigation }) {
     useEffect(() =>{  
         loadHomePageDatabase()
       }, [isFocused]);
-    
-    
-    
-    return( 
+
+    return(       
        <View style={{flex: 1}}>
        <StatusBar backgroundColor={theme.colors.blueGrey}/> 
            <Modal 
@@ -60,7 +58,7 @@ export default function Home ({ navigation }) {
 
                 {/* Header */}
                 <View  style={styles.header}>
-                    <TouchableOpacity>
+                    <TouchableOpacity >
                     <FontAwesome5 name="bars" size={25} color={theme.colors.black} />
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => navigation.navigate('User_Page')}>
@@ -74,7 +72,7 @@ export default function Home ({ navigation }) {
                     {/* Title */}
                     <View>
                         <Text style={styles.title, { fontSize: 20, margin: 20}}>Hi User,</Text>
-                        <Text style={styles.title, {fontSize:24, paddingLeft:20, fontWeight:'bold'}}>Find Your Perfect Match</Text>
+                        <Text style={styles.title, {fontSize:24, paddingLeft:20, fontWeight:'bold'}}>Find Your Perfect Team Member</Text>
                     </View>
 
                     {/* Search */}
@@ -89,15 +87,15 @@ export default function Home ({ navigation }) {
                         </TouchableOpacity>
                     </View>
 
-                    {/* Popular Companies */}
+                    {/* Suggested Profiles */}
                     <View style={styles.popularContainer}>
-                        <Text style={[styles.popularText, {marginLeft: 20}]}>Suggested  </Text>
+                        <Text style={[styles.popularText, {marginLeft: 20}]}>Suggested Profiles</Text>
                         <FlatList 
-                            data= {homePageDatabase}
+                            data={homePageDatabase}
                             horizontal={true}
                             showsHorizontalScrollIndicator={false}
                             keyExtractor={item => item.id}
-                            renderItem={({ item }) => {    
+                            renderItem={({ item }) => {
                                 return (
                                     <TouchableOpacity
                                         activeOpacity={1}
@@ -108,11 +106,11 @@ export default function Home ({ navigation }) {
                             }} />
                     </View>
 
-                    {/* Recent Jobs */}
+                    {/* Other Freelancer */}
                     <View style={[styles.popularContainer, {marginRight: 20, marginLeft: 20, marginBottom: 70}]}>
-                        <Text style={styles.popularText}>Other </Text>
+                        <Text style={styles.popularText}>Other Freelancers</Text>
                         <FlatList 
-                            data= {homePageDatabase}
+                            data={homePageDatabase}
                             keyExtractor={item => item.id}
                             renderItem={({ item }) => {
                                 return (

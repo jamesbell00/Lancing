@@ -6,7 +6,7 @@ import Experience from '../components/Experience'
 import Education from '../components/Education'
 const Exp = [
     {
-        id: '1',
+        id: '1', 
         company: 'Phone Service Center Tunisia',
         start: 'Jan 2018',
         end: 'Feb 2018',

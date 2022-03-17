@@ -1,6 +1,6 @@
 # OSX
 #
-*.DS_Store
+.DS_Store
 
 # Xcode
 #
@@ -57,4 +57,4 @@ buck-out/
 *.jsbundle
 
 # CocoaPods
-ios/Pods/
+/ios/Pods/

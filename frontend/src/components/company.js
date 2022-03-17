@@ -12,9 +12,6 @@ const Company = ({item}) => {
     const ToggleJobVisible = () => {
         setJobVisible(!jobVisible)
     }
-
-    
-
     return(
         <TouchableOpacity 
             onPress={() => ToggleJobVisible()}
@@ -29,7 +26,7 @@ const Company = ({item}) => {
             
             <View style={styles.header}>
                 <Image
-                    source={require('../images/image1.png' )}
+                    source={require('../images/image1.png')}
                     borderRadius={10}  
                     style={{width: 40, height: 40}} />
                     
@@ -39,13 +36,13 @@ const Company = ({item}) => {
                  </TouchableOpacity>
             </View>
             <Text style={[styles.jobTitle, id%2==0 ? {color: theme.colors.black} : {color: theme.colors.white} ]}>{item.title}</Text>
-            <Text style={[styles.jobLocation, id%2==0 ? {color: theme.colors.black} : {color: theme.colors.white} ]}>{ item.subtitle} </Text> 
+            <Text style={[styles.jobLocation, id%2==0 ? {color: theme.colors.black} : {color: theme.colors.white} ]}>{item.subtitle}</Text> 
             <View style={styles.tagContainer}>
                 <View style={[styles.tag, {marginRight: 8}, id%2==0 ? {backgroundColor: theme.colors.lightBlack} : {backgroundColor: theme.colors.lightWhite} ]}>
-                    <Text style={[styles.jobLocation, {fontWeight: 'bold'}, id%2==0 ? {color: theme.colors.lightWhite} : {color: theme.colors.lightBlack} ]}>Budget    ${ item.budget }</Text>
+                    <Text style={[styles.jobLocation, {fontWeight: 'bold'}, id%2==0 ? {color: theme.colors.lightWhite} : {color: theme.colors.lightBlack} ]}> Tech Match    {item.tech_match}</Text>
                 </View>
                 <View style={[styles.tag, id%2==0 ? {backgroundColor: theme.colors.lightBlack} : {backgroundColor: theme.colors.lightWhite} ]}>
-                    <Text style={[styles.jobLocation, {fontWeight: 'bold'}, id%2==0 ? {color: theme.colors.lightWhite} : {color: theme.colors.lightBlack} ]}>Total Match   { item.totalmatch }</Text>
+                    <Text style={[styles.jobLocation, {fontWeight: 'bold'}, id%2==0 ? {color: theme.colors.lightWhite} : {color: theme.colors.lightBlack} ]}>Soft Match     {item.soft_match}</Text>
                 </View>
             </View>
         </TouchableOpacity>
