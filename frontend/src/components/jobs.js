@@ -8,7 +8,7 @@ const Jobs = ({item}) => {
     return(
         <View style={styles.container}>
             <Image
-                source={require(/*'../images/jack.jpg'*/'../images/image1.png')}
+                source={require('../images/image1.png')}
                 borderRadius={10}
                 style={{width: 40, height: 40}} />
             <View style={styles.textContainer}>

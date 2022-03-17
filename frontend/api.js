@@ -1,5 +1,5 @@
-const API= 'http://localhost:3000' //for ios connection
-//const API= 'http://10.0.2.2:3000' // for android connection
+// const API= 'http://localhost:3000' //for ios connection
+const API= 'http://10.0.2.2:3000' // for android connection
 
 //Freelancer Queries
 

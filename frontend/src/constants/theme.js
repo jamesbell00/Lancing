@@ -1,4 +1,3 @@
-
 const colors = {
     white: '#ffffff',
     lightWhite: '#f0f0f0',
@@ -6,7 +5,7 @@ const colors = {
     lightBlack: '#252525',
     orange: '#fa5805',
     silver: '#bdc3c7',
-    blueGrey: '#79959c',
+    blueGrey: '#465c62',//79959c
     gray: '#636e72'
 }
 
@@ -22,5 +21,4 @@ const sizes = {
 export {
     colors,
     sizes
-
 }
