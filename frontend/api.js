@@ -49,14 +49,14 @@ export const getMatchedJobs = async(id) => {
 //Job Application Queries
 
 //Home Page Queries
-export const getHomePageFreelancers = async() => {
+export const getHomePageFreelancers = async(id) => {
     
-    const res = await fetch(`${API}/frhome`);
+    const res = await fetch(`${API}/frhome/${id}`);
     return await res.json();
     
 }
-export const getHomePageCompany = async() => {
+export const getHomePageCompany = async(id) => {
     
-    const res = await fetch(`${API}/cohome`);
+    const res = await fetch(`${API}/cohome/${id}`);
     return await res.json();
 }

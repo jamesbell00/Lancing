@@ -15,6 +15,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useIsFocused } from '@react-navigation/native';
 import {getHomePageCompany, getHomePageFreelancers} from '../../api';
 
+
 export default function Home ({ navigation }) {
     const [filterVisible, setFilterVisible] = useState(false)
 
@@ -23,17 +24,18 @@ export default function Home ({ navigation }) {
     }
     const[homePageDatabase,setHomePageDatabase] = useState([]);
     const isFocused = useIsFocused();
-    const userTypeId= 2;                      /// USERTYPE only usig this for now, when login is done, this will be updated
+    const userId=1;                             /// USERID only usig this for now, when login is done, this will be updated
+    const userTypeId= 1;                      /// USERTYPE only usig this for now, when login is done, this will be updated
     const loadHomePageDatabase=async() =>{
         
         if(userTypeId==1){
-            const data = await getHomePageFreelancers();
+            const data = await getHomePageFreelancers(userId);
             setHomePageDatabase(data)
             
             
         }
         else if (userTypeId==2){
-            const data = await getHomePageCompany();
+            const data = await getHomePageCompany(userId);
             setHomePageDatabase(data)
         }
         

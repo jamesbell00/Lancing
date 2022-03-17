@@ -1,7 +1,5 @@
 import { Router } from "express";
 import { 
-    getMatchedJobs,
-    getMatchedFreelancers,
     getHomePageJobs,
     getHomePageFreelancers
 } from '../controllers/home.js'

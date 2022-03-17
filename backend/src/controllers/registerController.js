@@ -65,7 +65,21 @@ export const saveFreelancer = async (req, res) => {
         req.body.dob, 
         req.body.phone, 
         req.body.country_code
-    ])
+    ]),
+    console.log("uploading pic")
+    var form = new formidable.IncomingForm();
+    const id=5;    
+    createFolder(`/Users/joseluisparedesmunoz/Lancing/backend/uploads/Freelancer/${req.params.id}`)
+    form.parse(req, function (err, fields, files) {
+        var oldpath = files.filetoupload.filepath;
+        var newpath = path.join(__dirname, '/../../', `/uploads/Freelancer/${req.params.id}/images`, files.filetoupload.originalFilename);  ///uploads/images/fullsize/
+
+
+        fs.rename(oldpath, newpath, function (err) {
+        if (err) throw err;
+          res.end("file uploaded and moved")
+        });
+    });
 }
 
 export const saveCompany = async (req, res) => {

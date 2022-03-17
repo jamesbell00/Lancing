@@ -87,18 +87,16 @@ router.get('/home', function (req, res){
 });
 
 
-router.post('/upload', (req, res) => {
+router.post('/upload/:id', (req, res) => {
   console.log("uploading pic")
     var form = new formidable.IncomingForm();
-    const id=5;
-    const userType='Freelancer';
-    const folderName = `/Users/joseluisparedesmunoz/Lancing/backend/uploads/Freelancer/${id}`
-    createFolder(folderName)
+    const id=5;    
+    createFolder(`/Users/joseluisparedesmunoz/Lancing/backend/uploads/Freelancer/${req.params.id}`)
     form.parse(req, function (err, fields, files) {
         var oldpath = files.filetoupload.filepath;
-        var newpath = path.join(__dirname, '/../../', `/uploads/Freelancer/${id}/images`, files.filetoupload.originalFilename);  ///uploads/images/fullsize/
+        var newpath = path.join(__dirname, '/../../', `/uploads/Freelancer/${req.params.id}/images`, files.filetoupload.originalFilename);  ///uploads/images/fullsize/
 
-
+    
 router.get('/uploads/images/fullsize/:file', function (req, res){
   file = req.params.file;
   var img = fs.readFileSync(path.join(__dirname, "/uploads/images/fullsize/", file));
@@ -114,10 +112,6 @@ router.get('/uploads/images/fullsize/:file', function (req, res){
         });
     });
 });
-
-const path = require('path');
-const fs = require('fs');
-const formidable = require('formidable');
 
 
 export default router;
