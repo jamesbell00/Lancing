@@ -5,13 +5,33 @@
 ##
 ## 		Date created: Jan 18, 2022
 ##
-##		Last modified: Feb 3, 2022 
+##		Last modified: March 14, 2022 
 ##		by James
+##
+## 		Modification:
+##		User_Types table
 #############################################
 
 DROP database if exists `Lancing`;
 CREATE database if not exists `Lancing`;
 use `Lancing`;
+
+CREATE TABLE `User_Types` (
+	`id` int,
+	`type` varchar(10) not null,
+    primary key (`id`)
+);
+
+CREATE TABLE `User` (
+	`id` int not null auto_increment,
+	`email` varchar(30) unique not null,
+    `password` varchar(200) not null,
+    `type_id` int not null,
+    PRIMARY KEY (`id`),
+    FOREIGN KEY (`type_id`) REFERENCES `User_Types`(`id`)
+		on update cascade
+        on delete cascade
+);
 
 CREATE TABLE `Freelancer` (
   `id` int not null auto_increment,
@@ -24,13 +44,19 @@ CREATE TABLE `Freelancer` (
   `dob` date not null,
   `phone` varchar(15) not null,
   `country_code` int not null,
-  `picture` varchar(30) default null,
-  `cvFile` varchar(30) default null,
+  `picture` text default null,
+  `cvFile` text default null,
   `website` varchar(256) default null,
   `bio` varchar(2000) default null,
   `created_date` timestamp default current_timestamp,
   `updated_date` timestamp default null on update current_timestamp,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`id`) REFERENCES `User`(`id`)
+	on update cascade
+    on delete cascade,
+  FOREIGN KEY (`email`) REFERENCES `User`(`email`)
+	on update cascade
+    on delete cascade
 );
 
 -- CREATE TABLE `CV` (
@@ -51,10 +77,13 @@ CREATE TABLE `Sectors` (
 );
 
 CREATE TABLE `Company` (
-  `company_id` int auto_increment,
+  `company_id` int not null auto_increment,
   `name` varchar(50) not null,
   `address` varchar(50) default null,
-  `logo` varchar(30) default null,
+  `logo` text default null,
+  `email` varchar(30) unique default null,
+  `phone` varchar(15) default null,
+  `country_code` int default null,
   `description` varchar(200) default null,
   `year_founded` varchar(4) default null,
   `no_emp` int default 0 check (no_emp>=0),
@@ -63,6 +92,12 @@ CREATE TABLE `Company` (
   `created_date` timestamp default current_timestamp,
   `updated_date` timestamp default null on update current_timestamp,
   PRIMARY KEY (`company_id`),
+  FOREIGN KEY (`company_id`) REFERENCES `User`(`id`)
+	on update cascade
+    on delete cascade,
+  FOREIGN KEY (`email`) REFERENCES `User`(`email`)
+	on delete cascade
+    on update cascade,
   FOREIGN KEY (`sector_id`) REFERENCES `Sectors`(`sector_id`)
 	on delete set null
 	on update cascade
@@ -224,31 +259,42 @@ CREATE TABLE `Saved_Freelancers` (
     on update cascade
 );
 
-CREATE TABLE `Company_Contact` (
-  `email` varchar(30),
-  `name` varchar(30) default null,
-  `phone` varchar(15) not null,
-  `country_code` int not null,
-  `company_id` int not null,
-  `created_date` timestamp default current_timestamp,
-  `updated_date` timestamp default null on update current_timestamp,
-  PRIMARY KEY (`email`),
-  FOREIGN KEY (`company_id`) REFERENCES `Company`(`company_id`)
-  	on delete cascade
-    on update cascade
-);
+-- CREATE TABLE `Company_Contact` (
+--   `email` varchar(30),
+--   `name` varchar(30) default null,
+--   `phone` varchar(15) not null,
+--   `country_code` int not null,
+--   `company_id` int not null,
+--   `created_date` timestamp default current_timestamp,
+--   `updated_date` timestamp default null on update current_timestamp,
+--   PRIMARY KEY (`email`),
+--   FOREIGN KEY (`company_id`) REFERENCES `Company`(`company_id`)
+--   	on delete cascade
+--     on update cascade,
+--   FOREIGN KEY (`email`) REFERENCES `User`(`email`)
+-- 	on update cascade
+--     on delete cascade
+-- );
 
-CREATE TABLE `Login_Info` (
-  `email` varchar(30),
-  `password` varchar(30),
-  PRIMARY KEY (`email`),
-  FOREIGN KEY (`email`) REFERENCES `Company_Contact`(`email`)
-  	on delete cascade
-    on update cascade,
-  FOREIGN KEY (`email`) REFERENCES `Freelancer`(`email`)
-  	on delete cascade
-    on update cascade
-);
+-- CREATE TABLE `Freelancers_Login_Info` (
+--   `email` varchar(30),
+--   `password` varchar(30),
+--   PRIMARY KEY (`email`),
+--   foreign key (`email`) references `Freelancer`(`email`)
+-- 	on delete cascade
+--     on update cascade
+-- );
+
+-- CREATE TABLE `Company_Login_Info` (
+--   `email` varchar(30),
+--   `password` varchar(30),
+--   PRIMARY KEY (`email`),
+--   foreign key (`email`) references `Company_Contact`(`email`)
+-- 	on delete cascade
+--     on update cascade
+-- );
+
+
 
 CREATE TABLE `Job_Skills` (
   `job_id` int,
@@ -269,3 +315,7 @@ CREATE TABLE `Job_Skills` (
   	on delete cascade
     on update cascade
 );
+
+
+
+
