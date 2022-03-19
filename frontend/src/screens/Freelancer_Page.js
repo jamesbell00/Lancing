@@ -111,7 +111,7 @@ const Freelancer_Page = props => {
           {/*<Text style={styles.jobSalary}>{props.item.salary}</Text>*/}
           <View style={{flexDirection: 'row'}}>
             <View style={[styles.tag, {marginRight: 10}]}>
-              <Text style={styles.jobLocation}>{props.item.time}</Text>
+              <Text style={styles.jobLocation}> {props.item.time}</Text>
             </View>
             <View style={styles.tag}>
               <Text style={styles.jobLocation}>{props.item.loc}</Text>

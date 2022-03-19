@@ -13,7 +13,7 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { useIsFocused } from '@react-navigation/native';
 import {getHomePageCompany, getHomePageFreelancers} from '../../api';
-
+import {mainUser, setMainUser} from '../Data/User_Info'
 
 export default function Home ({ navigation }) {
     const [filterVisible, setFilterVisible] = useState(false)
@@ -21,7 +21,7 @@ export default function Home ({ navigation }) {
     const ToggleFilterVisible = () => {
         setFilterVisible(!filterVisible)
     }
-
+    
     const[homePageDatabase,setHomePageDatabase] = useState([]);
     const isFocused = useIsFocused();
     const userId=1;                             /// USERID only usig this for now, when login is done, this will be updated
@@ -31,7 +31,7 @@ export default function Home ({ navigation }) {
         if(userTypeId==1){
             const data = await getHomePageFreelancers(userId);
             setHomePageDatabase(data)
-            
+            console.log("hello")
             
         }
         else if (userTypeId==2){
@@ -43,6 +43,10 @@ export default function Home ({ navigation }) {
     useEffect(() =>{  
         loadHomePageDatabase()
       }, [isFocused]);
+    const email='james.bell@slu.edu'
+    setMainUser(email)
+    const userUnparsed = localStorage.getItem("user")
+    const user = JSON.parse(userUnparsed);
 
     return(       
        <View style={{flex: 1}}>

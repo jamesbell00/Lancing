@@ -1,9 +1,13 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
+import { isFocused } from '@react-navigation/native';
 import {StyleSheet, View, ScrollView, TouchableOpacity, Image, Text, FlatList} from 'react-native'
 import * as theme from '../constants/theme'
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Experience from '../components/Experience'
 import Education from '../components/Education'
+import {mainUser, setMainUser} from '../Data/User_Info'
+import {getFreelancerSkills} from '../../api';
+
 const Exp = [
     {
         id: '1', 
@@ -45,6 +49,29 @@ const Edu = [
 ]
 
 export default function User_Page ({ navigation }){
+    const userUnparsed = localStorage.getItem("user")
+    const user = JSON.parse(userUnparsed);
+    
+    const[skills,setSkills] = useState([]);
+    
+    const loadSkills=async(id) => {
+        const userTypeId=1;
+        if(userTypeId==1){
+            const data = await getFreelancerSkills(id);
+            setSkills(data)
+            console.log("hello")
+        
+        }
+        else if (userTypeId==2){
+            const data = await getFreelancerSkills(id);
+            setSkills(data)
+        }
+    }
+    useEffect(() =>{  
+        loadSkills(1)
+      }, [isFocused]);
+    //console.log(skills.freelancer_id)
+    
     return(            
         <View style={{flex: 1}}>
             {/* Header */}
@@ -63,11 +90,11 @@ export default function User_Page ({ navigation }){
                         style={{width: 100, height: 100, borderRadius: 10}}
                         source={ require('../images/jack.jpg') } />
                     <View style={styles.titleTextContainer}>
-                        <Text style={styles.nameText}>Jack Walton</Text>
-                        <Text style={styles.posText}>Front-End Developer</Text>
+                        <Text style={styles.nameText}>{user.fname+' '+user.lname}</Text>
+                        <Text style={styles.posText}>'Front-End Developer'</Text>
                         <View style={{flexDirection: 'row', alignItems: 'center'}}>
                             <Icon name="location-on" size={20} color={theme.colors.gray} />
-                            <Text style={[styles.posText, {color: theme.colors.gray}]}>New York, NY</Text>
+                            <Text style={[styles.posText, {color: theme.colors.gray}]}>{user.city+', '+user.country}</Text>
                         </View>
                     </View>
                 </View>
@@ -76,21 +103,23 @@ export default function User_Page ({ navigation }){
                 <Text style={styles.normalText}>  Experienced and dedicated Data Analyst with several years of experience identifying efficiencies and problem areas within data streams. </Text>
 
                 {/* Experience */}
-                <Text style={styles.titleText}>Experience</Text>   
+                <Text style={styles.titleText}>Skills</Text>   
                 <View>
                     <FlatList 
-                        data={Exp}
+                        data={skills}
                         showsHorizontalScrollIndicator={false}
-                        keyExtractor={item => item.id}
+                        keyExtractor={item => item.freelancer_id}
                         renderItem={({ item }) => {
+                            console.log(skills.freelancer_id)
                             return (
+                                
                                     <Experience item={item} />
                             )
                         }} />
                 </View>
 
                 {/* Education */}
-                <Text style={styles.titleText}>Education</Text>   
+                <Text style={styles.titleText}>Jobs</Text>   
                 <View>
                     <FlatList 
                         data={Edu}

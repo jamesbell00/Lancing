@@ -8,6 +8,7 @@ import OnboardingScreen from './src/screens/OnBoardingScreen';
 import 'react-native-gesture-handler';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createDrawerNavigator } from '@react-navigation/drawer';
+import 'localstorage-polyfill';
 
 const Stack = createStackNavigator();
 

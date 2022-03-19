@@ -8,6 +8,11 @@ export const getFreelancersById = async(id) => {
     return await res.json();
 }
 
+export const getFreelancersByEmail = async(email) => {
+    const res = await fetch(`${API}/freelancers/email/${email}`);
+    return await res.json();
+}
+
 export const getMatchedFreelancers = async(id) => {
     const res = await fetch(`${API}/cohome/${id}`);
     return await res.json();
@@ -39,10 +44,15 @@ export const updateFreelancer= async(id, newFreelancer) => {
     return res;
 }
 
+export const getFreelancerSkills = async(id) => {
+    const res = await fetch(`${API}/freelancers/skills/${id}`);
+    return await res.json();
+}
 //Job Queries
 
 export const getMatchedJobs = async(id) => {
     const res = await fetch(`${API}/frhome/${id}`);
+    console.log(res)
     return await res.json();
 }
 
