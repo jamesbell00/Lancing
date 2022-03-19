@@ -1,6 +1,6 @@
 @api = http://localhost:3000
 
-{{api}}/loginFreelancer/lucas.zoilo@slu.edu
+{{api}}/loginFreelancer/james.bell@slu.edu
 Content-Type: application/json
 
 {

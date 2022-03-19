@@ -5,8 +5,11 @@
 {{api}}
 
 
-### get a single freelancer
+### get a single freelancer by id
 {{api}}/1
+
+### get a single freelancer by email
+{{api}}/email/james.bell@slu.edu
 
 
 ### get projects for a freelancer

@@ -6,6 +6,7 @@ import {
   deleteFreelancer,
   updateFreelancer,
   saveFreelancer,
+  getFreelancerByEmail
 } from "../controllers/freelancers.js";
 
 
@@ -80,6 +81,8 @@ router.get("/freelancers", getAllFreelancers);
  */
 router.get("/freelancers/:id", getFreelancerById);
 
+
+router.get("/freelancers/email/:email", getFreelancerByEmail);
 /**
  * @swagger
  * /freelancers/:id/projects:
@@ -106,7 +109,6 @@ router.delete("/freelancers/:id", deleteFreelancer)
  *    tags: [Freelancer]
  */
 router.put("/freelancers/:id", updateFreelancer);
-
 
 /**
  * @swagger
