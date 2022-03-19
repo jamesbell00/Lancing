@@ -45,3 +45,6 @@ Content-Type: application/json
   "phone": "6832453564",
   "country_code": "1"
 }
+
+################################
+GET {{api}}/skills/1

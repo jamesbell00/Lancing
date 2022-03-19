@@ -6,7 +6,8 @@ import {q_getAllFreelancers,
         q_deleteFreelancer, 
         q_updateFreelancer, 
         q_saveFreelancer,
-        q_getFreelancerByEmail
+        q_getFreelancerByEmail,
+        q_getSkills
 } from '../queries.js'
 
 
@@ -20,7 +21,6 @@ export const getAllFreelancers = async (req, res) => {
 export const getFreelancerById = async (req, res) => {
     const connection = await connect();
     const [rows] = await connection.query(q_getFreelancerById, [req.params.id])
-    console.log(rows[0])
     res.json(rows[0])
 }
 
@@ -75,4 +75,10 @@ export const saveFreelancer = async (req, res) => {
     })
 }
 
+//freelancer Skills
+export const getSkills = async (req, res) => {
+    const connection = await connect();
+    const [rows] = await connection.query(q_getSkills, [req.params.id])
+    res.json(rows[0])
+}
 

@@ -104,3 +104,6 @@ export const q_updateCompanyPassword = "update Company_Login_info SET password=?
 //inserts (Registration)
 export const q_registerFreelancer = "insert into Freelancers_login_info(email, password) values (?,?)"
 export const q_registerCompany='insert into Company_login_info (email, password) values (?,?)'
+
+//Get Skills and jobs
+export const q_getSkills="select  * from Freelancer_Skills fs join Skill_categories sc on sc.category_id= fs.category_id  join Skill_Subcategories ss on ss.subcategory_id=fs.subcategory_id join Skills s on s.skill_id=fs.skill_id where fs.freelancer_id=?"
