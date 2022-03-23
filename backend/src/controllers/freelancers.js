@@ -79,6 +79,6 @@ export const saveFreelancer = async (req, res) => {
 export const getSkills = async (req, res) => {
     const connection = await connect();
     const [rows] = await connection.query(q_getSkills, [req.params.id])
-    res.json(rows[0])
+    res.json(rows)
 }
 

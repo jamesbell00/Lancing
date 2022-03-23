@@ -106,4 +106,5 @@ export const q_registerFreelancer = "insert into Freelancers_login_info(email, p
 export const q_registerCompany='insert into Company_login_info (email, password) values (?,?)'
 
 //Get Skills and jobs
-export const q_getSkills="select  * from Freelancer_Skills fs join Skill_categories sc on sc.category_id= fs.category_id  join Skill_Subcategories ss on ss.subcategory_id=fs.subcategory_id join Skills s on s.skill_id=fs.skill_id where fs.freelancer_id=?"
+export const q_getSkills="select  fs.freelancer_id as id,  sc.category_name as category, ss.subcategory_name as subcategory, ss.subcategory_id as subcat_id, s.skill_name as skill from Freelancer_Skills fs join Skill_Categories sc on sc.category_id= fs.category_id  join Skill_Subcategories ss on ss.subcategory_id=fs.subcategory_id join Skills s on s.skill_id=fs.skill_id where fs.freelancer_id=? and fs.category_id=sc.category_id and fs.subcategory_id= ss.subcategory_id and s.category_id=fs.category_id and s.subcategory_id=fs.subcategory_id and fs.skill_id=s.skill_id and sc.category_id=ss.category_id group by fs.freelancer_id, sc.category_name, ss.subcategory_name, s.skill_name, ss.subcategory_id order by category, ss.subcategory_id"
+export const q_getJobs="select from freelancer_jobs join Jobs on join Job_Status on where freelancer_id=? and status id!=1"
