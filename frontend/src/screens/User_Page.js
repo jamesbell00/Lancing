@@ -59,7 +59,6 @@ export default function User_Page ({ navigation }){
         if(userTypeId==1){
             const data = await getFreelancerSkills(id);
             setSkills(data)
-            console.log("hello")
         
         }
         else if (userTypeId==2){
@@ -68,7 +67,7 @@ export default function User_Page ({ navigation }){
         }
     }
     useEffect(() =>{  
-        loadSkills(1)
+        loadSkills(user.id)
       }, [isFocused]);
     //console.log(skills.freelancer_id)
     
@@ -100,25 +99,47 @@ export default function User_Page ({ navigation }){
                 </View>
 
                 {/* Description */}
-                <Text style={styles.normalText}>  Experienced and dedicated Data Analyst with several years of experience identifying efficiencies and problem areas within data streams. </Text>
+                <Text style={styles.normalText}>{user.bio} </Text>
 
-                {/* Experience */}
-                <Text style={styles.titleText}>Skills</Text>   
+                {/* Tech Skills */}
+                
+                <Text style={styles.titleText}>Tech Skills</Text>  
+                
                 <View>
                     <FlatList 
                         data={skills}
                         showsHorizontalScrollIndicator={false}
-                        keyExtractor={item => item.freelancer_id}
+                        keyExtractor={item => item.id}
                         renderItem={({ item }) => {
-                            console.log(skills.freelancer_id)
-                            return (
+                            if(item.category=="Tech"){
                                 
+                                return (
                                     <Experience item={item} />
-                            )
+                                )
+                                
+                            }
+                            
+                       
+                        }} />
+                </View>
+                
+                {/* Education */}
+                <Text style={styles.titleText}>Soft Skills</Text>   
+                <View>
+                    <FlatList 
+                        data={skills}
+                        showsHorizontalScrollIndicator={false}
+                        keyExtractor={item => item.id}
+                        renderItem={({ item }) => {
+                            if(item.category=="Soft"){
+                                return (
+                                    <Experience item={item} />
+                                )
+                            }
                         }} />
                 </View>
 
-                {/* Education */}
+                {/* Jobs */}
                 <Text style={styles.titleText}>Jobs</Text>   
                 <View>
                     <FlatList 
