@@ -12,7 +12,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { useIsFocused } from '@react-navigation/native';
-import {getHomePageCompany, getHomePageFreelancers} from '../../api';
+import {getHomePageCompany, getHomePageFreelancer} from '../../api';
 import {mainUser, setMainUser} from '../Data/User_Info'
 
 export default function Home ({ navigation }) {
@@ -22,31 +22,36 @@ export default function Home ({ navigation }) {
         setFilterVisible(!filterVisible)
     }
     
+    setMainUser()//setMainUser('james.bell@slu.edu',1)
+    
+        const userUnparsed = localStorage.getItem("user")
+        const user = JSON.parse(userUnparsed);
+        const userTypeUnparsed = localStorage.getItem("userType")
+        const userType = JSON.parse(userTypeUnparsed);
+
+    
     const[homePageDatabase,setHomePageDatabase] = useState([]);
     const isFocused = useIsFocused();
-    const userId=1;                             /// USERID only usig this for now, when login is done, this will be updated
-    const userTypeId= 1;                      /// USERTYPE only usig this for now, when login is done, this will be updated
+
     const loadHomePageDatabase=async() =>{
         
-        if(userTypeId==1){
-            const data = await getHomePageFreelancers(userId);
+        if(userType==1){
+            const data = await getHomePageFreelancer(user.id);
             setHomePageDatabase(data)
-            console.log("hello")
-            
+            //console.log(data)
         }
-        else if (userTypeId==2){
-            const data = await getHomePageCompany(userId);
+        else if (userType==2){
+            const data = await getHomePageCompany(user.id);
             setHomePageDatabase(data)
+            
         }
         
     }
     useEffect(() =>{  
+        
         loadHomePageDatabase()
       }, [isFocused]);
-    const email='james.bell@slu.edu'
-    setMainUser(email)
-    const userUnparsed = localStorage.getItem("user")
-    const user = JSON.parse(userUnparsed);
+    
 
     return(       
        <View style={{flex: 1}}>
@@ -65,9 +70,12 @@ export default function Home ({ navigation }) {
                     <TouchableOpacity >
                     <FontAwesome5 name="bars" size={25} color={theme.colors.black} />
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => navigation.navigate('User_Page')}>
+                    <TouchableOpacity onPress={() => navigation.navigate('SignUpScreen')}>
                         <Icon name="person-outline" size={30} color={theme.colors.black} />
                     </TouchableOpacity>
+                    {/*<TouchableOpacity onPress={() => navigation.navigate('User_Page')}>
+                        <Icon name="person-outline" size={30} color={theme.colors.black} />
+                    </TouchableOpacity>*/}
                 </View>
 
                 {/* Body */}
@@ -75,7 +83,7 @@ export default function Home ({ navigation }) {
                      
                     {/* Title */}
                     <View>
-                        <Text style={styles.title, { fontSize: 20, margin: 20}}>Hi User,</Text>
+                        <Text style={styles.title, { fontSize: 20, margin: 20}}>Hi {},</Text>
                         <Text style={styles.title, {fontSize:24, paddingLeft:20, fontWeight:'bold'}}>Find Your Perfect Team Member</Text>
                     </View>
 

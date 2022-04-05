@@ -5,8 +5,9 @@ import userRoutes from "./routes/freelancers.js";
 import companyRoutes from "./routes/company.js";
 import jobRoutes from "./routes/jobs.js";
 import homeRoutes from './routes/home.js';
+import profileRoutes from './routes/profilePage.js';
 import jobApplicationRoutes from './routes/jobApplication.js'; 
-import logInRoutes from './routes/logIn.js'; 
+
 const multer = require('multer');
 
 import swaggerJSDoc from "swagger-jsdoc";
@@ -79,7 +80,8 @@ app.use(companyRoutes);
 app.use(jobRoutes);
 app.use(homeRoutes);
 app.use(jobApplicationRoutes);
-app.use(logInRoutes);
+app.use(profileRoutes);
+
 
 // init all web routes
 app.use(initWebRoutes)

@@ -5,6 +5,7 @@ import {
     getCompanyJobs,
     getCompanyContact,
     saveCompany,
+    getCompanyContactByEmail
   } from "../controllers/company.js";
 
 
@@ -84,8 +85,10 @@ router.get("/companies/:id", getCompanyById);
  *    summary: get the contact of the company 
  *    tags: [Company]
  */
-  router.get("/companies/:id/companyContact", getCompanyContact);
+  //router.get("/companies/:id/companyContact", getCompanyContact);
 
+  router.get("/companies/:email/companyContact", getCompanyContactByEmail);
+  
 
 /**
  * @swagger

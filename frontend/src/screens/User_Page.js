@@ -6,7 +6,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import Experience from '../components/Experience'
 import Education from '../components/Education'
 import {mainUser, setMainUser} from '../Data/User_Info'
-import {getFreelancerSkills} from '../../api';
+import {getFreelancerSkills, getComapnysJobs} from '../../api';
 
 const Exp = [
     {
@@ -48,21 +48,37 @@ const Edu = [
     },
 ]
 
+const info = [
+    {
+        year1:'Age, ',
+        title1: 'Personal Information', 
+        year2:'Date of Birth: ',
+        title2: 'Tech Skills', 
+        title3: 'Soft Skills',
+    },
+    {
+        year1:'Since ',
+        title1: 'Details about Company',
+        year2: 'Year Founded: ',
+        title2: 'Jobs',   
+    }
+]
 export default function User_Page ({ navigation }){
     const userUnparsed = localStorage.getItem("user")
     const user = JSON.parse(userUnparsed);
+    const userTypeUnparsed = localStorage.getItem("userType")
+    const userType = JSON.parse(userTypeUnparsed);
     
     const[skills,setSkills] = useState([]);
     
     const loadSkills=async(id) => {
-        const userTypeId=1;
-        if(userTypeId==1){
+        if(userType==1){
             const data = await getFreelancerSkills(id);
             setSkills(data)
         
         }
-        else if (userTypeId==2){
-            const data = await getFreelancerSkills(id);
+        else if (userType==2){
+            const data = await getComapnysJobs(id);
             setSkills(data)
         }
     }
@@ -89,44 +105,66 @@ export default function User_Page ({ navigation }){
                         style={{width: 100, height: 100, borderRadius: 10}}
                         source={ require('../images/jack.jpg') } />
                     <View style={styles.titleTextContainer}>
-                        <Text style={styles.nameText}>{user.fname+' '+user.lname}</Text>
-                        <Text style={styles.posText}>'Front-End Developer'</Text>
+                        <Text style={styles.nameText}>{user.name}</Text>
+                        <Text style={styles.posText}>{info[userType-1].year1}{user.year}</Text>
                         <View style={{flexDirection: 'row', alignItems: 'center'}}>
                             <Icon name="location-on" size={20} color={theme.colors.gray} />
-                            <Text style={[styles.posText, {color: theme.colors.gray}]}>{user.city+', '+user.country}</Text>
+                            <Text style={[styles.posText, {color: theme.colors.gray}]}>{user.address}</Text>
                         </View>
                     </View>
                 </View>
 
-                {/* Description */}
-                <Text style={styles.normalText}>{user.bio} </Text>
-
+                {/* About*/}
+                <Text style={styles.titleText}>About {user.name}</Text>
+                <Text style={styles.primaryText}>{user.description} </Text>
+                {/* More information*/}
+                <Text style={styles.titleText}>{info[userType-1].title1}</Text> 
+                <Text style={styles.primaryText}>Name: {user.name} </Text>
+                <Text style={styles.primaryText}>{info[userType-1].year2}{user.year}</Text>
+                <Text style={styles.primaryText}>Address: {user.address} </Text>
+                <Text style={styles.primaryText}>Sector: {user.sector_id} </Text>
+                <Text style={styles.primaryText}>Number of Employees: {user.no_emp} </Text>
+                {/* Contact*/}
+                <Text style={styles.titleText}>Contact</Text> 
+                <Text style={styles.primaryText}>Email: {user.email} </Text>
+                <Text style={styles.primaryText}>Phone: +({user.country_code}) {user.phone} </Text>
+                <Text style={styles.primaryText}>Website: {user.website} </Text>
+                {/* Files*/}
+                <Text style={styles.titleText}>Files and Images</Text>
+                <Text style={styles.primaryText}>Image: {user.picture} </Text>
+                <Text style={styles.primaryText}>File: {user.file} </Text>
                 {/* Tech Skills */}
-                
-                <Text style={styles.titleText}>Tech Skills</Text>  
-                
+                <Text style={styles.titleText}>{info[userType-1].title2}</Text>  
                 <View>
+                    
+
                     <FlatList 
                         data={skills}
                         showsHorizontalScrollIndicator={false}
                         keyExtractor={item => item.id}
                         renderItem={({ item }) => {
                             if(item.category=="Tech"){
-                                
                                 return (
+                                    
                                     <Experience item={item} />
                                 )
                                 
+                            }else if(item.category!="Soft"){
+                                return (
+                                    
+                                    <Experience item={item} />
+                                )
                             }
                             
                        
                         }} />
                 </View>
                 
-                {/* Education */}
-                <Text style={styles.titleText}>Soft Skills</Text>   
+                {/* Soft Skills */}
+                <Text style={styles.titleText}>{info[userType-1].title3}</Text>   
                 <View>
                     <FlatList 
+                    
                         data={skills}
                         showsHorizontalScrollIndicator={false}
                         keyExtractor={item => item.id}
@@ -139,27 +177,7 @@ export default function User_Page ({ navigation }){
                         }} />
                 </View>
 
-                {/* Jobs */}
-                <Text style={styles.titleText}>Jobs</Text>   
-                <View>
-                    <FlatList 
-                        data={Edu}
-                        showsHorizontalScrollIndicator={false}
-                        keyExtractor={item => item.id}
-                        renderItem={({ item }) => {
-                            return (
-                                    <Education item={item} />
-                            )
-                        }} />
-                </View>
-
-                {/* Languages */}
-                <Text style={styles.titleText}>Languages</Text>  
-                <View style={{flexDirection: 'row', justifyContent: 'space-between', marginBottom: 20}}>
-                    <Text style={styles.normalText}>Spanish</Text>
-                    <Text style={styles.normalText}>French</Text>
-                    <Text style={styles.normalText}>English</Text>
-                </View>
+            
             </ScrollView>
         </View>
     )
@@ -201,6 +219,11 @@ const styles =StyleSheet.create({
         paddingBottom: 7,
         fontWeight: 'bold',
         fontSize: theme.sizes.h4,
+        color: theme.colors.black
+    },
+    primaryText: {
+        lineHeight: 30,
+        fontSize: theme.sizes.h3,
         color: theme.colors.black
     },
     normalText: {

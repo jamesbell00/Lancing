@@ -1,10 +1,15 @@
-@api = http://localhost:3000/jobs
+@api = http://localhost:3000
 
 ### get all jobs
 {{api}}
 
 ### get matched jobs by id
-{{api}}/1
+{{api}}/jobs/1
+### 
+get {{api}}/job/1
+
+### get
+get {{api}}/job/skills/1
 
 
 

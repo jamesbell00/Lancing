@@ -10,5 +10,6 @@
 ### get company Jobs
 {{api}}/1/Jobs
 
-
+### get a single 
+{{api}}/lancing.application@gmail.com/companyContact
 

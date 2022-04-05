@@ -4,7 +4,7 @@ import * as theme from '../constants/theme'
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 export default function Experience ({ item }) {
-    console.log("length is " +Object.keys(item.skill).length)
+    
     
     return(            
         <View style={styles.container}>
@@ -13,8 +13,8 @@ export default function Experience ({ item }) {
             </View>
             <View style={styles.bodyContainer}>
                 
-                <Text style={styles.primaryText}>{item.subcategory}</Text>
-                <Text style={styles.secondText}>{item.skill} - </Text>
+                <Text style={styles.primaryText}>{item.name}</Text>
+                <Text style={styles.secondText}>{item.description} - </Text>
             </View>
         </View>
     )

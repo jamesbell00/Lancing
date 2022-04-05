@@ -1,5 +1,6 @@
 const {default: Education} = require('../components/Education');
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import { isFocused } from '@react-navigation/native';
 import {
   View,
   Text,
@@ -18,11 +19,29 @@ import User_Page from './User_Page';
 import AboutSection from './AboutSection';
 import * as Freelancer from '../constants/Freelancers';
 import ProjectSection from './ProjectSection';
+import {getJobById,getFreelancerById} from '../../api';
 
 const Tab = createMaterialTopTabNavigator();
 
+
+
 function TopTabBar(props) {
   const data = props.data;
+  const userUnparsed = localStorage.getItem("user")
+  const user = JSON.parse(userUnparsed);
+  const userTypeUnparsed = localStorage.getItem("userType")
+  const userType = JSON.parse(userTypeUnparsed);
+  const item = props.data;
+  
+  const info = [
+    {
+        title1: 'Company'
+    },
+    {
+        title1: 'Contact'
+    }
+]
+
   return (
     <Tab.Navigator>
       <Tab.Screen
@@ -32,7 +51,7 @@ function TopTabBar(props) {
       />
       <Tab.Screen
         name="Projects"
-        options={{tabBarLabel: 'Projects'}}
+        options={{tabBarLabel: info[userType-1].title1}}
         children={() => <ProjectSection data={data} />}
       />
     </Tab.Navigator>
@@ -40,7 +59,48 @@ function TopTabBar(props) {
 }
 
 const Freelancer_Page = props => {
-  const [data, setData] = useState({});
+  const userUnparsed = localStorage.getItem("user")
+  const user = JSON.parse(userUnparsed);
+  const userTypeUnparsed = localStorage.getItem("userType")
+  const userType = JSON.parse(userTypeUnparsed);
+  const[job,setJob] = useState([]);
+    
+    const loadJob=async(id) => {
+        if(userType==1){
+            const data = await getJobById(id);
+            setJob(data)
+        
+        }
+        else if (userType==2){
+            const data = await getFreelancerById(id);
+            setJob(data)
+        }
+    }
+    useEffect(() =>{  
+        loadJob(1)
+      }, [isFocused]);
+
+      const info = [
+        {
+            action: 'Apply'
+        },
+        {
+            action: 'Invite'
+        }
+      ]
+
+      const apply =()=>{
+        axios({
+          method: "POST",
+          data: {
+            freelancer_id: 1,
+            job_id: 1,
+            status_id: 1
+          },
+          withCredentials: true,
+          url: "http://10.0.2.2:3000/jobApplication",
+        }).then((res) =>console.log("res:"+res));
+      }
 
   return (
     <View style={styles.container}>
@@ -53,7 +113,7 @@ const Freelancer_Page = props => {
             color={theme.colors.black}
           />
         </TouchableOpacity>
-        <Text style={styles.headerTitle}>{props.item.company}</Text>
+        <Text style={styles.headerTitle}>{job.company}</Text>
         <View style={{padding: 20}}></View>
       </View>
       {/* Body */}
@@ -74,7 +134,7 @@ const Freelancer_Page = props => {
                 justifyContent: 'center',
                 alignItems: 'center',
               }}
-              source={props.item.logo}
+              source={require('../images/image1.png')}
             />
             <Icon
               name="bookmark-border"
@@ -83,7 +143,7 @@ const Freelancer_Page = props => {
               style={{left: 99}}
             />
           </View>
-          <Text style={styles.jobTitle}>{props.item.job}</Text>
+          <Text style={styles.jobTitle}>{job.name}</Text>
           <View
             style={{
               flexDirection: 'row',
@@ -111,16 +171,16 @@ const Freelancer_Page = props => {
           {/*<Text style={styles.jobSalary}>{props.item.salary}</Text>*/}
           <View style={{flexDirection: 'row'}}>
             <View style={[styles.tag, {marginRight: 10}]}>
-              <Text style={styles.jobLocation}> {props.item.time}</Text>
+              <Text style={styles.jobLocation}>{job.detail1}</Text>
             </View>
             <View style={styles.tag}>
-              <Text style={styles.jobLocation}>{props.item.loc}</Text>
+              <Text style={styles.jobLocation}>'75%{} match'</Text>
             </View>
           </View>
         </View>
         <View style={styles.container}>
           <View style={{flex: 1}}>
-            <TopTabBar data={props.item} />
+            <TopTabBar data={job} />
           </View>
         </View>
 
@@ -137,6 +197,15 @@ const Freelancer_Page = props => {
             ]}>
             <CommunityIcon name="chat" size={30} color={theme.colors.white} />
           </View>
+          <TouchableOpacity onPress={(req,res) =>{ apply
+          console.log("apply passed")
+            try {
+              console.log("")
+              navigation.navigate('Home')
+          } catch (err) {
+              console.log("error of try")
+          }
+          }}>
           <View
             style={[
               styles.btnContainer,
@@ -147,9 +216,10 @@ const Freelancer_Page = props => {
                 styles.jobTitle,
                 {color: theme.colors.white, marginTop: 0},
               ]}>
-              Invite
+              {info[userType-1].action}
             </Text>
           </View>
+          </TouchableOpacity>
         </View>
       </View>
     </View>

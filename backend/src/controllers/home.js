@@ -1,22 +1,20 @@
 import {connect} from '../database.js'
 import {
-    q_getHomePageAllJobs,
-    q_getMatchedFreelancers,
-    q_getHomePageFreelancers,
-    q_getHomePageJobs
+    q_getHomePageFreelancer,
+    q_getHomePageComppany
 } from '../queries.js'
 
 
-export const getHomePageJobs = async (req, res) => {
+export const getHomePageFreelancer = async (req, res) => {
     const connection = await connect();
-    const [rows] = await connection.query(q_getHomePageJobs, [req.params.id])
+    const [rows] = await connection.query(q_getHomePageFreelancer, [req.params.id])
     
     res.json(rows)
 }
 
-export const getHomePageFreelancers = async (req, res) => {
+export const getHomePageCompany = async (req, res) => {
     const connection = await connect();
-    const [rows] = await connection.query(q_getHomePageFreelancers, [req.params.id])
+    const [rows] = await connection.query(q_getHomePageComppany, [req.params.id])
     
     res.json(rows)
 }

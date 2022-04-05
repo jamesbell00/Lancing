@@ -31,7 +31,9 @@ const Company = ({item}) => {
                     style={{width: 40, height: 40}} />
                     
                 {/*<Text style={[styles.jobSalary, id%2==0 ? {color: theme.colors.black} : {color: theme.colors.white} ]}>{item.salary}</Text>*/}
-                <TouchableOpacity>
+                <TouchableOpacity onPress={async(req,res) =>{ 
+                    
+                }}>
                     <Icon name="bookmark-border" size={30} style={[ id%2==0 ? {color: theme.colors.black} : {color: theme.colors.white} ]} />
                  </TouchableOpacity>
             </View>

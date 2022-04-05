@@ -1,5 +1,6 @@
+import React, {useState, useEffect} from 'react';
+import { isFocused } from '@react-navigation/native';
 const {default: Education} = require('../components/Education');
-import React, {useState} from 'react';
 import {
   View,
   Text,
@@ -14,23 +15,66 @@ import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs
 import Experience from '../components/Experience';
 import * as theme from '../constants/theme';
 import * as Freelancer from '../constants/Freelancers';
+import {getFreelancerSkills, getJobSkills} from '../../api';
+
+const info = [
+  {
+      title1: 'Job', 
+      title2: 'Budget',
+      title3: 'Duration',
+      title4: 'Job Description'
+  },
+  {
+      title1: 'Freelancer',
+      title2: 'Age',
+      title3: 'Location',
+      title4: "Freelancer's CV"
+  }
+]
 
 const Tab = createMaterialTopTabNavigator();
 
 const AboutSection = props => {
+  const userUnparsed = localStorage.getItem("user")
+  const user = JSON.parse(userUnparsed);
+  const userTypeUnparsed = localStorage.getItem("userType")
+  const userType = JSON.parse(userTypeUnparsed);
   const item = props.data;
+  const[skills,setSkills] = useState([]);
+    
+    const loadSkills=async(id) => {
+        if(userType==1){
+            const data = await getJobSkills(id);
+            setSkills(data)
+        
+        }
+        else if (userType==2){
+            const data = await getFreelancerSkills(id);
+            setSkills(data)
+        }
+    }
+    useEffect(() =>{  
+        loadSkills(1)
+      }, [isFocused]);
+
+    
+    
+  
 
   return (
     <View style={styles.container}>
       {/* Body */}
       <View style={styles.body}>
         <ScrollView showsVerticalScrollIndicator={false}>
-          {/* profession Details */}
           <View>
-            <Text style={styles.jobTitle}>About Me</Text>
-            <Text style={styles.descriptionText}>{item.About}</Text>
-            {/* Experience */}
-            <Text style={styles.jobTitle}>Experience</Text>
+            {/* About*/}
+            <Text style={styles.jobTitle}>About {info[userType-1].title1} </Text>
+            <Text style={styles.descriptionText}>{item.description}</Text>
+            {/* More Information */}
+            <Text style={styles.jobTitle}>More Information</Text>
+            <Text style={styles.descriptionText}>{info[userType-1].title2}: {item.line2}</Text>
+            <Text style={styles.descriptionText}>{info[userType-1].title3}: {item.line3}</Text>
+  
             <View>
               <FlatList
                 data={item.Exp}
@@ -42,32 +86,50 @@ const AboutSection = props => {
               />
             </View>
 
-            {/* Education */}
-            <Text style={styles.jobTitle}>Education</Text>
+            {/* Files */}
+            <Text style={styles.jobTitle}>{info[userType-1].title4}</Text>
+            <Text style={styles.descriptionText}>{item.file} </Text>
+            <Text style={styles.jobTitle}>Tech Skills Required</Text>
+
+            {/* Skills Required */}
             <View>
               <FlatList
-                data={item.Edu}
+                data={skills}
                 showsHorizontalScrollIndicator={false}
                 keyExtractor={item => item.id}
                 renderItem={({item}) => {
-                  return <Education item={item} />;
+                  if(item.category=="Tech"){ 
+                    console.log(item.category)
+                    return (
+                      
+                        <Experience item={item} />
+                    )
+                    
+                  }
                 }}
               />
             </View>
 
-            {/* Languages */}
-            <Text style={styles.jobTitle}>Languages</Text>
-            <View
-              style={{
-                flexDirection: 'column',
-                justifyContent: 'space-between',
-                padding: 10,
-                marginBottom: 20,
-              }}>
-              <Text style={styles.normalText}>Spanish</Text>
-              <Text style={styles.normalText}>French</Text>
-              <Text style={styles.normalText}>English</Text>
+            {/* Soft Skills */}
+            <Text style={styles.jobTitle}>Soft Skills required</Text>
+            <View>
+              <FlatList
+                data={skills}
+                showsHorizontalScrollIndicator={false}
+                keyExtractor={item => item.id}
+                renderItem={({item}) => {
+                  if(item.category=="Soft"){
+                                
+                    return (
+                        <Experience item={item} />
+                    )
+                    
+                }
+                }}
+              />
             </View>
+            {/* Languages */}
+            
           </View>
         </ScrollView>
       </View>

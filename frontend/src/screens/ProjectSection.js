@@ -21,7 +21,8 @@ import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
 const Tab = createMaterialTopTabNavigator();
 
 const JobsProject = ({item}) => {
-  const id = parseInt(item.id);
+  //const id = parseInt(item.id);
+  console.log(item)
   return (
     <View style={styles.container}>
       {/* <Image
@@ -29,7 +30,7 @@ const JobsProject = ({item}) => {
               borderRadius={10}
               style={{width: 40, height: 40}} /> */}
       <View style={styles.textContainer}>
-        <Text style={styles.jobTitle}>{item.title}</Text>
+        <Text style={styles.jobTitle}>g{item.company}</Text>
         <View
           style={{
             flexDirection: 'row',
@@ -74,38 +75,29 @@ const ProjectSection = props => {
   const item = props.data;
 
   return (
-    {
-      /* Body */
-    },
-    (
+    <View style={styles.container}>
+      {/* Body */}
       <View style={styles.body}>
         <ScrollView showsVerticalScrollIndicator={false}>
-          <View
-            style={[
-              styles.popularContainer,
-              {marginRight: 10, marginLeft: 10, marginBottom: 70},
-            ]}>
-            {/* <View>
-              <FlatList
-                data={item.Exp}
-                showsHorizontalScrollIndicator={false}
-                keyExtractor={item => item.id}
-                renderItem={({item}) => {
-                  return <Experience item={item} />;
-                }}
-              />
-            </View> */}
-            <FlatList
-              data={item.projects}
-              keyExtractor={item => item.id}
-              renderItem={({item}) => {
-                return <JobsProject item={item} />;
-              }}
-            />
+          <View>
+            {/* About */}
+            <Text style={styles.jobTitle}>About {item.company} </Text> 
+            <Text style={styles.descriptionText}>{item.company_description}</Text>
+            <Text style={styles.descriptionText}>Year Founded:  </Text>
+
+            {/* Contact */}
+            <Text style={styles.jobTitle}>Contact</Text>
+            <Text style={styles.descriptionText}>Phone: +{item.country_code} {item.phone} </Text>
+            <Text style={styles.descriptionText}>Email: {item.email} </Text>
+            <Text style={styles.descriptionText}>Website: {item.website} </Text>
+            <Text style={styles.descriptionText}>Address: {item.address}</Text>
+            
+          
+            
           </View>
         </ScrollView>
       </View>
-    )
+    </View>
   );
 };
 
@@ -114,7 +106,14 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: theme.colors.lightWhite,
   },
-
+  header: {
+    height: 70,
+    padding: 20,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    backgroundColor: theme.colors.lightWhite,
+  },
   headerTitle: {
     fontWeight: 'bold',
     fontSize: theme.sizes.h4,
@@ -127,7 +126,20 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 40,
     backgroundColor: theme.colors.white,
   },
-
+  companyContainer: {
+    padding: 30,
+    alignItems: 'center',
+  },
+  jobTitle: {
+    marginTop: 10,
+    fontWeight: 'bold',
+    fontSize: theme.sizes.h4,
+  },
+  jobSalary: {
+    marginTop: 5,
+    fontWeight: '900',
+    fontSize: theme.sizes.h3,
+  },
   tag: {
     padding: 7,
     marginTop: 10,
@@ -136,32 +148,15 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: theme.colors.silver,
   },
-
-  container: {
-    marginBottom: 17,
+  descriptionText: {
     marginTop: 10,
+    fontSize: theme.sizes.h3,
+  },
+  btnContainer: {
     padding: 15,
-    borderRadius: 10,
-    flexDirection: 'row',
-    backgroundColor: theme.colors.silver,
-  },
-  textContainer: {
-    flex: 1,
-    marginLeft: 10,
-  },
-  iconContainer: {
-    padding: 5,
+    borderRadius: 15,
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  jobTitle: {
-    fontWeight: 'bold',
-    fontSize: theme.sizes.h3,
-    color: theme.colors.black,
-  },
-  jobLocation: {
-    fontSize: theme.sizes.h2,
-    color: theme.colors.silver,
   },
 });
 

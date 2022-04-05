@@ -3,19 +3,19 @@ import {StyleSheet, View, Text} from 'react-native'
 import * as theme from '../constants/theme'
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-export default function Education ({ item }) {
+
+export default function Skills ({ item }) {
     return(            
         <View style={styles.container}>
             <View>
                 <Icon name="keyboard-arrow-right" size={20} color={theme.colors.black} />
             </View>
             <View style={styles.bodyContainer}>
-                <Text style={styles.primaryText}>{item.di}</Text>
-                <Text style={styles.primaryText}>{item.institute}</Text>
-                <Text style={styles.secondText}>{item.start} - {item.end}</Text>
+                <Text style={styles.secondText}>{item.skill} - </Text>
             </View>
         </View>
     )
+
 }
 
 const styles =StyleSheet.create({

@@ -2,6 +2,8 @@ import { Router } from "express";
 import { 
     getAllJobs,
     getMatchedJobs,
+    getJob,
+    getJobSkills
 } from '../controllers/jobs.js'
 import { 
     saveFreelancer
@@ -10,8 +12,10 @@ import {
 const router = Router();
 
 router.get("/jobs", getAllJobs)
-
+router.get("/job/:id", getJob)
 router.get("/jobs/:id", getMatchedJobs)
+router.get("/job/skills/:id", getJobSkills)
+
 
 router.post("/jobs/:id", saveFreelancer)
 

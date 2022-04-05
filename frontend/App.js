@@ -8,6 +8,10 @@ import OnboardingScreen from './src/screens/OnBoardingScreen';
 import 'react-native-gesture-handler';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createDrawerNavigator } from '@react-navigation/drawer';
+import SignInScreen from './src/screens/SignInScreen';
+import SignUpScreen from './src/screens/SignUpScreen';
+import RegisterFreelancer from './src/screens/RegisterFreelancer';
+import RegisterCompany from './src/screens/RegisterCompany';
 import 'localstorage-polyfill';
 
 const Stack = createStackNavigator();
@@ -58,7 +62,11 @@ const App = () => {
             />
           )}
           <Stack.Screen name="Home" component={Home} />
+          <Stack.Screen name="SignUpScreen" component={SignUpScreen}/> 
+          <Stack.Screen name="SignInScreen" component={SignInScreen}/> 
           <Stack.Screen name="User_Page" component={User_Page}/>
+          <Stack.Screen name="RegisterFreelancer" component={RegisterFreelancer}/> 
+          <Stack.Screen name="RegisterCompany" component={RegisterCompany}/>
         </Stack.Navigator>
         
       </NavigationContainer>

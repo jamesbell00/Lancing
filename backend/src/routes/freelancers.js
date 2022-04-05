@@ -7,7 +7,7 @@ import {
   updateFreelancer,
   saveFreelancer,
   getFreelancerByEmail,
-  getSkills
+  getFreelancerSkills
 } from "../controllers/freelancers.js";
 
 
@@ -120,6 +120,6 @@ router.put("/freelancers/:id", updateFreelancer);
  */
 router.post("/freelancers", saveFreelancer);
 
-router.get("/freelancers/skills/:id",getSkills);
+router.get("/freelancers/skills/:id",getFreelancerSkills);
 
 export default router;

@@ -1,14 +1,14 @@
 import { Router } from "express";
 import { 
-    getHomePageJobs,
-    getHomePageFreelancers
+    getHomePageFreelancer,
+    getHomePageCompany
 } from '../controllers/home.js'
 
 const router = Router();
 
-router.get("/frhome/:id", getHomePageJobs)
+router.get("/frhome/:id", getHomePageFreelancer)
 
-router.get("/cohome/:id", getHomePageFreelancers) 
+router.get("/cohome/:id", getHomePageCompany) 
 
 
 
