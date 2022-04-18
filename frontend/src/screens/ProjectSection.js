@@ -22,7 +22,7 @@ const Tab = createMaterialTopTabNavigator();
 
 const JobsProject = ({item}) => {
   //const id = parseInt(item.id);
-  console.log(item)
+  
   return (
     <View style={styles.container}>
       {/* <Image
@@ -80,10 +80,7 @@ const ProjectSection = props => {
       <View style={styles.body}>
         <ScrollView showsVerticalScrollIndicator={false}>
           <View>
-            {/* About */}
-            <Text style={styles.jobTitle}>About {item.company} </Text> 
-            <Text style={styles.descriptionText}>{item.company_description}</Text>
-            <Text style={styles.descriptionText}>Year Founded:  </Text>
+            
 
             {/* Contact */}
             <Text style={styles.jobTitle}>Contact</Text>

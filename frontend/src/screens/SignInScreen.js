@@ -13,7 +13,6 @@ import * as theme from '../constants/theme';
 import {ScrollView, TouchableOpacity} from 'react-native-gesture-handler';
 import SignUpScreen from './SignUpScreen';
 import {handleLogin as handleLoginService} from "../../../backend/src/services/loginService"
-import {mainUser, setMainUser} from '../Data/User_Info'
 import  {useState, useEffect} from 'react';
 import {getFreelancersByEmail, getCompanyByEmail} from '../../api';
 import { isFocused } from '@react-navigation/native';
@@ -22,29 +21,31 @@ import Axios from 'axios';
 import {testLog} from '../../api';
 
 
+
+
 const SignInScreen = ({navigation}) => {
   const[userName,setUserName] = useState([]);
   const[userPassword,setUserPassword] = useState([]);
   const[wrongPassword,setWrongPassword] = useState([]);
-  const[userType,setUserType] = useState([]);
-
+  
   const login =()=>{
     console.log("works")
     Axios.post( "http://10.0.2.2:3000/login",{
       email: userName,
       password: userPassword
     }).then((response) => {
+      
+      console.log(response.data)
       if(response.data.message)
       {setWrongPassword(response.data.message)}
       else{
-        navigation.navigate('Home')
-        localStorage.setItem("email", JSON.stringify(userName))
-        localStorage.setItem("userType", JSON.stringify(response.data.type_id))
+        localStorage.setItem("user", JSON.stringify(response.data))
+        navigation.navigate('Home');
         
       }
     });
   };
-  //setMainUser(userName,userType);
+  
   
 
   return (

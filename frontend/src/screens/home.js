@@ -13,7 +13,6 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { useIsFocused } from '@react-navigation/native';
 import {getHomePageCompany, getHomePageFreelancer} from '../../api';
-import {mainUser, setMainUser} from '../Data/User_Info'
 
 export default function Home ({ navigation }) {
     const [filterVisible, setFilterVisible] = useState(false)
@@ -22,37 +21,34 @@ export default function Home ({ navigation }) {
         setFilterVisible(!filterVisible)
     }
     
-    setMainUser()//setMainUser('james.bell@slu.edu',1)
-    
-        const userUnparsed = localStorage.getItem("user")
-        const user = JSON.parse(userUnparsed);
-        const userTypeUnparsed = localStorage.getItem("userType")
-        const userType = JSON.parse(userTypeUnparsed);
-
+    const userUnparsed = localStorage.getItem("user")
+    const user = JSON.parse(userUnparsed);
+    console.log(user)
     
     const[homePageDatabase,setHomePageDatabase] = useState([]);
     const isFocused = useIsFocused();
-
+    function loadSearchs(data) {
+        setHomePageDatabase(data)
+    }
     const loadHomePageDatabase=async() =>{
-        
-        if(userType==1){
-            const data = await getHomePageFreelancer(user.id);
-            setHomePageDatabase(data)
-            //console.log(data)
+        if(user.type_id==1){
+            
+            const data = await getHomePageFreelancer(user.freelancer_id);
+            loadSearchs(data)
         }
-        else if (userType==2){
-            const data = await getHomePageCompany(user.id);
-            setHomePageDatabase(data)
+        else if (user.type_id==2){
+            const data = await getHomePageCompany(user.company_id);
+            loadSearchs(data)
             
         }
         
     }
     useEffect(() =>{  
-        
         loadHomePageDatabase()
       }, [isFocused]);
     
-
+    
+    
     return(       
        <View style={{flex: 1}}>
        <StatusBar backgroundColor={theme.colors.blueGrey}/> 
@@ -70,7 +66,7 @@ export default function Home ({ navigation }) {
                     <TouchableOpacity >
                     <FontAwesome5 name="bars" size={25} color={theme.colors.black} />
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => navigation.navigate('SignUpScreen')}>
+                    <TouchableOpacity onPress={() => navigation.navigate('User_Page')}>
                         <Icon name="person-outline" size={30} color={theme.colors.black} />
                     </TouchableOpacity>
                     {/*<TouchableOpacity onPress={() => navigation.navigate('User_Page')}>
@@ -83,8 +79,8 @@ export default function Home ({ navigation }) {
                      
                     {/* Title */}
                     <View>
-                        <Text style={styles.title, { fontSize: 20, margin: 20}}>Hi {},</Text>
-                        <Text style={styles.title, {fontSize:24, paddingLeft:20, fontWeight:'bold'}}>Find Your Perfect Team Member</Text>
+                        <Text style={styles.title, { color:theme.colors.silver,fontSize: 20, margin: 20}}>Hi {user.fname},</Text>
+                        <Text style={styles.title, {color:theme.colors.silver, fontSize:24, paddingLeft:20, fontWeight:'bold'}}>Find Your Perfect Team Member</Text>
                     </View>
 
                     {/* Search */}
@@ -185,7 +181,7 @@ const styles =StyleSheet.create({
         marginBottom: 15,
         fontWeight: 'bold',
         fontSize: theme.sizes.h3,
-        color: theme.colors.black
+        color: theme.colors.silver
     },
 
     NavContainer: {

@@ -14,7 +14,7 @@ const Company = ({item}) => {
     }
     return(
         <TouchableOpacity 
-            onPress={() => ToggleJobVisible()}
+            onPress={localStorage.setItem("itemId", JSON.stringify(item.item_id)),() =>   ToggleJobVisible()}
             style={[styles.container, id%2==0 ? {backgroundColor: theme.colors.white} : {backgroundColor: theme.colors.black} ]}>
             
             <Modal 
@@ -26,7 +26,7 @@ const Company = ({item}) => {
             
             <View style={styles.header}>
                 <Image
-                    source={require('../images/image1.png')}
+                    source={require(`../images/image1.png`)}
                     borderRadius={10}  
                     style={{width: 40, height: 40}} />
                     
@@ -41,10 +41,10 @@ const Company = ({item}) => {
             <Text style={[styles.jobLocation, id%2==0 ? {color: theme.colors.black} : {color: theme.colors.white} ]}>{item.subtitle}</Text> 
             <View style={styles.tagContainer}>
                 <View style={[styles.tag, {marginRight: 8}, id%2==0 ? {backgroundColor: theme.colors.lightBlack} : {backgroundColor: theme.colors.lightWhite} ]}>
-                    <Text style={[styles.jobLocation, {fontWeight: 'bold'}, id%2==0 ? {color: theme.colors.lightWhite} : {color: theme.colors.lightBlack} ]}>Budget           {item.budget}</Text>
+                    <Text style={[styles.jobLocation, {fontWeight: 'bold'}, id%2==0 ? {color: theme.colors.lightWhite} : {color: theme.colors.lightBlack} ]}>{item.detail}</Text>
                 </View>
                 <View style={[styles.tag, id%2==0 ? {backgroundColor: theme.colors.lightBlack} : {backgroundColor: theme.colors.lightWhite} ]}>
-                    <Text style={[styles.jobLocation, {fontWeight: 'bold'}, id%2==0 ? {color: theme.colors.lightWhite} : {color: theme.colors.lightBlack} ]}>Total Match     {item.totalmatch}</Text>
+                    <Text style={[styles.jobLocation, {fontWeight: 'bold'}, id%2==0 ? {color: theme.colors.lightWhite} : {color: theme.colors.lightBlack} ]}>{item.totalmatch}</Text>
                 </View>
             </View>
         </TouchableOpacity>

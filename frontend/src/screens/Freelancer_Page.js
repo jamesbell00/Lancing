@@ -20,6 +20,7 @@ import AboutSection from './AboutSection';
 import * as Freelancer from '../constants/Freelancers';
 import ProjectSection from './ProjectSection';
 import {getJobById,getFreelancerById} from '../../api';
+import Axios from 'axios';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -29,8 +30,6 @@ function TopTabBar(props) {
   const data = props.data;
   const userUnparsed = localStorage.getItem("user")
   const user = JSON.parse(userUnparsed);
-  const userTypeUnparsed = localStorage.getItem("userType")
-  const userType = JSON.parse(userTypeUnparsed);
   const item = props.data;
   
   const info = [
@@ -51,7 +50,7 @@ function TopTabBar(props) {
       />
       <Tab.Screen
         name="Projects"
-        options={{tabBarLabel: info[userType-1].title1}}
+        options={{tabBarLabel: info[user.type_id-1].title1}}
         children={() => <ProjectSection data={data} />}
       />
     </Tab.Navigator>
@@ -61,18 +60,18 @@ function TopTabBar(props) {
 const Freelancer_Page = props => {
   const userUnparsed = localStorage.getItem("user")
   const user = JSON.parse(userUnparsed);
-  const userTypeUnparsed = localStorage.getItem("userType")
-  const userType = JSON.parse(userTypeUnparsed);
   const[job,setJob] = useState([]);
-    
+  const itemIdUnparsed = localStorage.getItem("itemId")
+  const itemId = JSON.parse(itemIdUnparsed);
+
     const loadJob=async(id) => {
-        if(userType==1){
-            const data = await getJobById(id);
+        if(user.type_id==1){
+            const data = await getJobById(itemId);
             setJob(data)
         
         }
-        else if (userType==2){
-            const data = await getFreelancerById(id);
+        else if (user.type_id==2){
+            const data = await getFreelancerById(itemId);
             setJob(data)
         }
     }
@@ -88,19 +87,19 @@ const Freelancer_Page = props => {
             action: 'Invite'
         }
       ]
-
       const apply =()=>{
-        axios({
-          method: "POST",
-          data: {
-            freelancer_id: 1,
-            job_id: 1,
-            status_id: 1
-          },
-          withCredentials: true,
-          url: "http://10.0.2.2:3000/jobApplication",
-        }).then((res) =>console.log("res:"+res));
-      }
+        console.log("works")
+        Axios.post( "http://10.0.2.2:3000/jobApplication",{
+          freelancer_id: user.freelancer_id,
+          job_id: itemId,
+          status_id: 1
+        }).then((response) => {
+          console.log("applied")
+          console.log(response.data)
+          
+        });
+      };
+      
 
   return (
     <View style={styles.container}>
@@ -174,7 +173,7 @@ const Freelancer_Page = props => {
               <Text style={styles.jobLocation}>{job.detail1}</Text>
             </View>
             <View style={styles.tag}>
-              <Text style={styles.jobLocation}>'75%{} match'</Text>
+              <Text style={styles.jobLocation}>'85% match'</Text>
             </View>
           </View>
         </View>
@@ -197,29 +196,23 @@ const Freelancer_Page = props => {
             ]}>
             <CommunityIcon name="chat" size={30} color={theme.colors.white} />
           </View>
-          <TouchableOpacity onPress={(req,res) =>{ apply
-          console.log("apply passed")
-            try {
-              console.log("")
-              navigation.navigate('Home')
-          } catch (err) {
-              console.log("error of try")
-          }
-          }}>
+          
+          <TouchableOpacity onPress={apply}>
           <View
             style={[
-              styles.btnContainer,
+              styles.applybutton,
               {flex: 1, backgroundColor: theme.colors.black, marginLeft: 5},
-            ]}>
+            ]}>  
             <Text
               style={[
                 styles.jobTitle,
                 {color: theme.colors.white, marginTop: 0},
               ]}>
-              {info[userType-1].action}
+              {info[user.type_id-1].action}
             </Text>
           </View>
           </TouchableOpacity>
+          
         </View>
       </View>
     </View>
@@ -283,6 +276,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  applybutton:{
+    padding: 15,
+    borderRadius: 15,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 115,
+  }
 });
 
 export default Freelancer_Page;

@@ -66,18 +66,17 @@ const info = [
 export default function User_Page ({ navigation }){
     const userUnparsed = localStorage.getItem("user")
     const user = JSON.parse(userUnparsed);
-    const userTypeUnparsed = localStorage.getItem("userType")
-    const userType = JSON.parse(userTypeUnparsed);
+    
     
     const[skills,setSkills] = useState([]);
     
     const loadSkills=async(id) => {
-        if(userType==1){
+        if(user.type_id==1){
             const data = await getFreelancerSkills(id);
             setSkills(data)
         
         }
-        else if (userType==2){
+        else if (user.type_id==2){
             const data = await getComapnysJobs(id);
             setSkills(data)
         }
@@ -103,10 +102,10 @@ export default function User_Page ({ navigation }){
                 <View style={styles.titleContainer}>
                     <Image 
                         style={{width: 100, height: 100, borderRadius: 10}}
-                        source={ require('../images/jack.jpg') } />
+                        source={ require('../images/lancing.png') } />
                     <View style={styles.titleTextContainer}>
                         <Text style={styles.nameText}>{user.name}</Text>
-                        <Text style={styles.posText}>{info[userType-1].year1}{user.year}</Text>
+                        <Text style={styles.posText}>{info[2-1].year1}{user.year}</Text>
                         <View style={{flexDirection: 'row', alignItems: 'center'}}>
                             <Icon name="location-on" size={20} color={theme.colors.gray} />
                             <Text style={[styles.posText, {color: theme.colors.gray}]}>{user.address}</Text>
@@ -118,9 +117,9 @@ export default function User_Page ({ navigation }){
                 <Text style={styles.titleText}>About {user.name}</Text>
                 <Text style={styles.primaryText}>{user.description} </Text>
                 {/* More information*/}
-                <Text style={styles.titleText}>{info[userType-1].title1}</Text> 
+                <Text style={styles.titleText}>{info[user.type_id-1].title1}</Text> 
                 <Text style={styles.primaryText}>Name: {user.name} </Text>
-                <Text style={styles.primaryText}>{info[userType-1].year2}{user.year}</Text>
+                <Text style={styles.primaryText}>{info[user.type_id-1].year2}{user.year}</Text>
                 <Text style={styles.primaryText}>Address: {user.address} </Text>
                 <Text style={styles.primaryText}>Sector: {user.sector_id} </Text>
                 <Text style={styles.primaryText}>Number of Employees: {user.no_emp} </Text>
@@ -134,7 +133,7 @@ export default function User_Page ({ navigation }){
                 <Text style={styles.primaryText}>Image: {user.picture} </Text>
                 <Text style={styles.primaryText}>File: {user.file} </Text>
                 {/* Tech Skills */}
-                <Text style={styles.titleText}>{info[userType-1].title2}</Text>  
+                <Text style={styles.titleText}>{info[user.type_id-1].title2}</Text>  
                 <View>
                     
 
@@ -161,7 +160,7 @@ export default function User_Page ({ navigation }){
                 </View>
                 
                 {/* Soft Skills */}
-                <Text style={styles.titleText}>{info[userType-1].title3}</Text>   
+                <Text style={styles.titleText}>{info[user.type_id-1].title3}</Text>   
                 <View>
                     <FlatList 
                     

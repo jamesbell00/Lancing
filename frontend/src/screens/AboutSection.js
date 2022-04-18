@@ -37,18 +37,16 @@ const Tab = createMaterialTopTabNavigator();
 const AboutSection = props => {
   const userUnparsed = localStorage.getItem("user")
   const user = JSON.parse(userUnparsed);
-  const userTypeUnparsed = localStorage.getItem("userType")
-  const userType = JSON.parse(userTypeUnparsed);
   const item = props.data;
   const[skills,setSkills] = useState([]);
     
     const loadSkills=async(id) => {
-        if(userType==1){
+        if(user.type_id==1){
             const data = await getJobSkills(id);
             setSkills(data)
         
         }
-        else if (userType==2){
+        else if (user.type_id==2){
             const data = await getFreelancerSkills(id);
             setSkills(data)
         }
@@ -68,12 +66,12 @@ const AboutSection = props => {
         <ScrollView showsVerticalScrollIndicator={false}>
           <View>
             {/* About*/}
-            <Text style={styles.jobTitle}>About {info[userType-1].title1} </Text>
+            <Text style={styles.jobTitle}>About {info[user.type_id-1].title1} </Text>
             <Text style={styles.descriptionText}>{item.description}</Text>
             {/* More Information */}
             <Text style={styles.jobTitle}>More Information</Text>
-            <Text style={styles.descriptionText}>{info[userType-1].title2}: {item.line2}</Text>
-            <Text style={styles.descriptionText}>{info[userType-1].title3}: {item.line3}</Text>
+            <Text style={styles.descriptionText}>{info[user.type_id-1].title2}: {item.line2}</Text>
+            <Text style={styles.descriptionText}>{info[user.type_id-1].title3}: {item.line3}</Text>
   
             <View>
               <FlatList
@@ -87,7 +85,7 @@ const AboutSection = props => {
             </View>
 
             {/* Files */}
-            <Text style={styles.jobTitle}>{info[userType-1].title4}</Text>
+            <Text style={styles.jobTitle}>{info[user.type_id-1].title4}</Text>
             <Text style={styles.descriptionText}>{item.file} </Text>
             <Text style={styles.jobTitle}>Tech Skills Required</Text>
 
@@ -99,7 +97,7 @@ const AboutSection = props => {
                 keyExtractor={item => item.id}
                 renderItem={({item}) => {
                   if(item.category=="Tech"){ 
-                    console.log(item.category)
+                    
                     return (
                       
                         <Experience item={item} />
