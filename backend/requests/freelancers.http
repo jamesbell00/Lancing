@@ -1,6 +1,6 @@
 @api = http://localhost:3000/freelancers
 
-
+json.post http://localhost:3000/login
 ### Get all freelancers
 {{api}}
 

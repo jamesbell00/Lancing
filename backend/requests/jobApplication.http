@@ -24,7 +24,7 @@ POST {{api}}
 Content-Type: application/json
 
 {
-    "freelancer_id": "2",
-    "job_id": "3",
+    "freelancer_id": "1",
+    "job_id": "4",
     "status_id": "4"
 }

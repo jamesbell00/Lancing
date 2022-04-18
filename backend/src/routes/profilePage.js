@@ -4,5 +4,5 @@ import {
 } from '../controllers/profilePage.js'
 const router = Router();
 
-router.get("CompanyProfile/jobs/:id", getCompanysJobs);
+router.get("/CompanyProfile/jobs/:id", getCompanysJobs);
 export default router;

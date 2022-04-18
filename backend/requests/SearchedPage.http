@@ -1,0 +1,6 @@
+@api = http://localhost:3000
+
+get {{api}}/job/1
+
+################################
+get {{api}}/freelancer/1

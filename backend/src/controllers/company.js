@@ -5,7 +5,7 @@ import {
     q_getCompanyJobs,
     q_getCompanyContactById,
     q_insertCompany,
-    q_getCompanyContactByEmail
+    q_getCompanyByEmail
 } from '../queries.js'
 
 
@@ -24,11 +24,10 @@ export const getCompanyById = async (req, res) => {
     res.json(rows[0])
 }
 
-export const getCompanyContactByEmail = async (req, res) => {
+export const getCompanyByEmail = async (req, res) => {
     const connection = await connect();
-    const [rows] = await connection.query(q_getCompanyContactByEmail, [req.params.email])
-    console.log(rows)
-    res.json(rows)
+    const [rows] = await connection.query(q_getCompanyByEmail, [req.params.email])
+    res.json(rows[0])
 }
 
 // get jobs by company (maybe add to get company by id)

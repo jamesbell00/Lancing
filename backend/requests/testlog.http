@@ -1,0 +1,14 @@
+@api = http://localhost:3000
+
+get {{api}}/testlog/james.bell@slu.edu
+
+
+################################
+
+post {{api}}/login
+Content-Type: application/json
+
+{
+  "email": "lancing.application@gmail.com",
+  "password": "password"
+}

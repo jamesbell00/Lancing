@@ -8,6 +8,9 @@ import {checkLoggedIn, checkLoggedOut, getPageLogin, postLogOut} from "../contro
 import {validateRegister} from "../validation/authValidation.js";
 import passport from "passport";
 import {initPassportLocal} from "../controllers/passportLocalController.js";
+import {handleLogin as handleLoginService} from "../services/loginService.js";
+import {loginTesti} from "../controllers/login.js"
+
 
 // Init all passport
 initPassportLocal();
@@ -49,13 +52,6 @@ router.post("/registerDetails", (req, res) => {
 
 router.get("/login", checkLoggedOut, getPageLogin);
 
-router.post(
-  '/login',
-  passport.authenticate('local', {
-    failureRedirect: '/login'
-  }), (req, res) => {
-    res.redirect("/")
-  });
 
 router.get("/register", getPageRegister);
 router.post("/register", validateRegister, createNewUser);

@@ -12,7 +12,7 @@ import {
 const router = Router();
 
 router.get("/jobs", getAllJobs)
-router.get("/job/:id", getJob)
+router.get("/job1/:id", getJob)
 router.get("/jobs/:id", getMatchedJobs)
 router.get("/job/skills/:id", getJobSkills)
 

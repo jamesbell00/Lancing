@@ -6,17 +6,26 @@ export const handleLogin = (email, password) => {
         //check email is exist or not
         let user = await findUserByEmail(email);
         if (user) {
+            var realPassword=bcrypt.hashSync(user.password, 5)  //added only until we make all password bycrypt
             //compare password
-            await bcrypt.compare(password, user.password).then((isMatch) => {
+            await bcrypt.compare(password, realPassword).then((isMatch) => {
                 if (isMatch) {
                     console.log(`Type id: ${user.type_id}`)
-                    resolve(user);
+                    
+                    if(user.type_id==1){
+                        let user= findFreelancerByEmail(email)
+                        resolve(user)
+                    }else if(user.type_id==2){
+                        let user = findCompanyByEmail(email)
+                        resolve(user)
+                    }
+                    
                 } else {
-                    reject(`The password that you've entered is incorrect`);
+                    resolve({message:`The password that you've entered is incorrect`});
                 }
             });
         } else {
-            reject(`This user email "${email}" doesn't exist`);
+            resolve({message:`This user email "${email}" doesn't exist`});
         }
     });
 };
@@ -43,7 +52,7 @@ export const findFreelancerByEmail = async (email) => {
         try {
             const connection = await connect();
             const [rows] = await connection.query(
-                ' SELECT * FROM `Freelancer` WHERE `email` = ?  ', email
+                "SELECT u.id as 'id', u.email as 'email', u.type_id as 'type_id', f.id as 'freelancer_id', f.fname as 'fname', concat(f.fname,' ',f.lname) as 'name', f.bio as 'description',  f.address as 'address', f.website as 'website', f.country_code as 'country_code', f.phone as 'phone', f.dob as 'year', f.cvFile as 'file', f.picture as 'picture', concat(f.city,', ',f.country)  as 'location' from User u join freelancer f on f.email = u.email  where u.email =?", email
             );
             let user = rows[0];
             resolve(user)
@@ -59,7 +68,7 @@ export const findCompanyByEmail = async (email) => {
         try {
             const connection = await connect();
             const [rows] = await connection.query(
-                ' SELECT * FROM `Company` WHERE `email` = ?  ', email
+                "SELECT u.id as 'id', u.email as 'email', u.type_id as 'type_id', c.company_id as 'company_id', c.name as 'fname', c.name as 'name', c.description as 'description',  c.address as 'address', c.website as 'website', c.country_code as 'country_code', c.phone as 'phone', c.year_founded as 'year', c.logo as 'picture', c.no_emp as 'no-emp', c.sector_id as 'sector_id' from User u join Company c on c.email = u.email  where u.email =?", email
             );
             let user = rows[0];
             resolve(user)

@@ -5,7 +5,7 @@ import {
     getCompanyJobs,
     getCompanyContact,
     saveCompany,
-    getCompanyContactByEmail
+    getCompanyByEmail
   } from "../controllers/company.js";
 
 
@@ -87,7 +87,7 @@ router.get("/companies/:id", getCompanyById);
  */
   //router.get("/companies/:id/companyContact", getCompanyContact);
 
-  router.get("/companies/:email/companyContact", getCompanyContactByEmail);
+  router.get("/companies/email/:email", getCompanyByEmail);
   
 
 /**
