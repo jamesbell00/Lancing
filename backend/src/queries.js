@@ -74,7 +74,6 @@ export const q_saveFreelancer = 'insert into Freelancer (id, fname,lname,email, 
 ////////////////////////////////
 
 // selects
-export const q_getAllCompanies = 'select * from Company'
 export const q_getCompanyById = 'select * from Company where company_id = ?'
 export const q_getCompanyJobs = 'select  c.name as Company_Name, j.* from Jobs j join Company c on j.company_id= c.company_id where j.company_id = ?'
 
@@ -111,22 +110,4 @@ export const q_updateApplicationStatus = "update Applications SET ? WHERE freela
 //deletes
 export const q_deleteApplication="delete from Applications where freelancer_id=? and job_id=?"
 
-// inserts
 
-
-
-////////////////////////////////
-// Company Contact queries
-////////////////////////////////
-
-// selects
-export const q_getCompanyContactById = 'select * from Company_Contact where company_id = ?'
-// insert
-export const q_insertCompanyContact = 'insert into Company_Contact (email,name,phone,country_code, company_id) values (?,?,?,?,?)'
-
-////////////////////////////////
-// Skills queries
-////////////////////////////////
-
-// selects
-//export const q_getFreelancerSkills="select  fs.freelancer_id as id,  sc.category_name as category, ss.subcategory_name as subcategory, ss.subcategory_id as subcat_id, s.skill_name as skill from Freelancer_Skills fs join Skill_Categories sc on sc.category_id= fs.category_id  join Skill_Subcategories ss on ss.subcategory_id=fs.subcategory_id join Skills s on s.skill_id=fs.skill_id where fs.freelancer_id=? and fs.category_id=sc.category_id and fs.subcategory_id= ss.subcategory_id and s.category_id=fs.category_id and s.subcategory_id=fs.subcategory_id and fs.skill_id=s.skill_id and sc.category_id=ss.category_id group by fs.freelancer_id, sc.category_name, ss.subcategory_name, s.skill_name, ss.subcategory_id order by category, ss.subcategory_id"
