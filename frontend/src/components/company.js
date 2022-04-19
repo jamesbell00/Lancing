@@ -3,6 +3,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import {StyleSheet, TouchableOpacity, Modal, View, Text, Image} from 'react-native'
 import * as theme from '../constants/theme'
 import Freelancer_Page from '../screens/Freelancer_Page'
+import Axios from 'axios';
 //import img from '../../../backend/uploads/Freelancer/2/images/j.jpg' 
 
 const Company = ({item}) => {
@@ -12,6 +13,33 @@ const Company = ({item}) => {
     const ToggleJobVisible = () => {
         setJobVisible(!jobVisible)
     }
+    const userUnparsed = localStorage.getItem("user")
+    const user = JSON.parse(userUnparsed);
+    const [bookmark, setBookMark] = useState("bookmark-border");
+    const save =()=>{
+        var query=""
+        var inputs={}
+        setBookMark("bookmark")
+        if(user.type_id==1){
+            query="http://10.0.2.2:3000/SaveJob"
+            inputs={
+                freelancer_id: user.freelancer_id,
+                job_id: item.item_id
+              }
+        }else if(user.type_id==2){
+            query="http://10.0.2.2:3000/SaveFreelancer"
+            inputs={
+                freelancer_id: item.item_id,
+                job_id: 1,
+                company_id: user.company_id
+              }
+        }
+        Axios.post( query,inputs).then((response) => {
+          console.log(response.data)
+          
+        });
+      };
+
     return(
         <TouchableOpacity 
             onPress={localStorage.setItem("itemId", JSON.stringify(item.item_id)),() =>   ToggleJobVisible()}
@@ -31,10 +59,8 @@ const Company = ({item}) => {
                     style={{width: 40, height: 40}} />
                     
                 {/*<Text style={[styles.jobSalary, id%2==0 ? {color: theme.colors.black} : {color: theme.colors.white} ]}>{item.salary}</Text>*/}
-                <TouchableOpacity onPress={async(req,res) =>{ 
-                    
-                }}>
-                    <Icon name="bookmark-border" size={30} style={[ id%2==0 ? {color: theme.colors.black} : {color: theme.colors.white} ]} />
+                <TouchableOpacity onPress={save}>
+                    <Icon name={bookmark} size={30} style={[ id%2==0 ? {color: theme.colors.white} : {color: theme.colors.white} ]} />
                  </TouchableOpacity>
             </View>
             <Text style={[styles.jobTitle, id%2==0 ? {color: theme.colors.black} : {color: theme.colors.white} ]}>{item.title}</Text>
