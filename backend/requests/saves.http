@@ -1,0 +1,66 @@
+@api = http://localhost:3000
+
+
+
+################################
+get {{api}}/SavedFreelancers
+Content-Type: application/json
+
+{
+  "job_id": "1",
+  "company_id": "1"
+
+}
+
+################################
+get {{api}}/SavedJobs
+Content-Type: application/json
+
+{
+  "freelancer_id": "1"
+
+}
+
+#########
+POST {{api}}/SaveFreelancer
+Content-Type: application/json
+
+{
+  "freelancer_id": "1",
+  "job_id": "1",
+  "company_id": "1"
+
+}
+
+################################
+
+POST {{api}}/SaveJob
+Content-Type: application/json
+
+{
+  "freelancer_id": "1",
+  "job_id": "1"
+
+}
+################################
+
+POST {{api}}/unSaveFreelancer
+Content-Type: application/json
+
+{
+  "freelancer_id": "1",
+  "job_id": "1",
+  "company_id": "1"
+
+}
+
+################################
+
+POST {{api}}/unSaveJob
+Content-Type: application/json
+
+{
+  "freelancer_id": "1",
+  "job_id": "1"
+
+}

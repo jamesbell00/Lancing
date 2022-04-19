@@ -5,7 +5,7 @@ import {q_getAllFreelancers,
         q_getFreelancerProjects, 
         q_deleteFreelancer, 
         q_updateFreelancer, 
-        q_saveFreelancer,
+        q_insertFreelancer,
         q_getFreelancerByEmail,
         q_getFreelancerSkills
 } from '../queries.js'
@@ -59,7 +59,7 @@ export const updateFreelancer = async (req, res) => {
 // another page for nullables (using update)
 export const saveFreelancer = async (req, res) => {
     const connection = await connect();
-    const [results] = await connection.query(q_saveFreelancer, [
+    const [results] = await connection.query(q_insertFreelancer, [
         req.user.id,
         req.body.fname, 
         req.body.lname, 

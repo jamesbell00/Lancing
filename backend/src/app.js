@@ -9,6 +9,7 @@ import profileRoutes from './routes/profilePage.js';
 import jobApplicationRoutes from './routes/jobApplication.js'; 
 import SearchedPage from './routes/SearchedItemPage.js'; 
 import Log from './routes/login.js'; 
+import Saves from './routes/saves.js'; 
 
 const multer = require('multer');
 
@@ -85,6 +86,7 @@ app.use(jobApplicationRoutes);
 app.use(profileRoutes);
 app.use(SearchedPage);
 app.use(Log);
+app.use(Saves);
 
 
 // init all web routes
