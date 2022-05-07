@@ -98,6 +98,24 @@ const Freelancer_Page = props => {
           console.log(response.data)
           
         });
+        
+        Popup.show({
+          type: 'success',
+          title: 'Success',
+          textBody: "Applied successfully!\nPlease wait for the company's response.",
+          buttonText: 'Ok',
+          confirmText: 'Ok',
+          icon: require('../images/check-mark.png'),
+          iconEnabled: true,
+          callback: () => {
+              // alert('Okey Callback && hidden');
+              Popup.hide();
+          },
+          cancelCallback: () => {
+              // alert('Cancel Callback && hidden');
+              Popup.hide();
+          },
+      })
       };
       
 
