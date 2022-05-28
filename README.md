@@ -16,5 +16,6 @@ The backend of the application is implemented in node.js. We chose node.js becau
 * Routes
 * Services
 * Validation
+
 This type of structure allows an easy and simple way to organize the code. In the database scripts you can find the DDL for the database as well as a sql script to load sample data into the tables. The controllers directory includes the functions that call the queries from the database. The routes include the http methods and the function to call with the respective request method. The services directory has the more logic heavy code, including the login service which handles the log in with the validation called from the Validation directory, and the registration service which after checking to make sure everything is validated like the password length, unique email, password confirmation, then calls the query to insert the data into the User table. 
 
